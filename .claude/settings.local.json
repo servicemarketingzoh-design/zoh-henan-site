@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i 's|/images/actualites/sici-2026/\\\\\\([^\"]*\\\\\\)\\\\.JPG|/images/actualites/sici-2026/\\\\1.webp|g' 'c:/Users/Dell/Downloads/SITZE-ZOH-main \\(2\\)/SITZE-ZOH-main/app/[locale]/actualites/data.ts')",
+      "Bash(sed -i 's|/images/actualites/sici-2026/\\\\\\([^\"]*\\\\\\)\\\\.JPG|/images/actualites/sici-2026/\\\\1.webp|g' 'c:/Users/Dell/Downloads/SITZE-ZOH-main \\(2\\)/SITZE-ZOH-main/app/[locale]/galerie/page.tsx')",
+      "Bash(sed -i 's|/images/actualites/salon-immobilier-2025/\\\\\\([^\"]*\\\\\\)\\\\.jpg|/images/actualites/salon-immobilier-2025/\\\\1.webp|g' 'c:/Users/Dell/Downloads/SITZE-ZOH-main \\(2\\)/SITZE-ZOH-main/app/[locale]/actualites/data.ts')",
+      "Bash(sed -i 's|/images/actualites/salon-immobilier-2025/\\\\\\([^\"]*\\\\\\)\\\\.jpg|/images/actualites/salon-immobilier-2025/\\\\1.webp|g' 'c:/Users/Dell/Downloads/SITZE-ZOH-main \\(2\\)/SITZE-ZOH-main/app/[locale]/galerie/page.tsx')",
+      "Bash(npm run *)",
+      "Bash(git --version)",
+      "Bash(wmic logicaldisk *)"
+    ]
+  }
+}

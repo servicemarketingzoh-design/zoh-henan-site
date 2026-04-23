@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-outfit: 'Outfit', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-outfit); overflow-x: hidden; }
