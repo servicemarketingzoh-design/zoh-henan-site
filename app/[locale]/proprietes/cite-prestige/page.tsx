@@ -37,6 +37,7 @@ export default function CitePrestigePage() {
       return matchType && matchStanding;
     })
     .sort((a, b) => {
+      // Duplex (R+1) en premier, Plain-pied après
       const isDuplexA = a.niveaux.includes("R+1") ? 0 : 1;
       const isDuplexB = b.niveaux.includes("R+1") ? 0 : 1;
       return isDuplexA - isDuplexB;
@@ -87,6 +88,7 @@ export default function CitePrestigePage() {
         {/* ── FILTRES ───────────────────────────────────────────────── */}
         <section className="sticky top-[70px] z-30 bg-white border-b border-gray-100 shadow-sm">
           <div className="max-w-6xl mx-auto px-6 sm:px-12 py-3 flex flex-wrap items-center gap-3">
+            {/* Filtre par type */}
             <div className="flex flex-wrap gap-2">
               {filtres.map((f) => (
                 <button
@@ -103,6 +105,7 @@ export default function CitePrestigePage() {
               ))}
             </div>
             <div className="h-4 w-px bg-gray-200 hidden sm:block" />
+            {/* Filtre par standing */}
             <select
               value={standing}
               onChange={(e) => setStanding(e.target.value)}
@@ -133,9 +136,11 @@ export default function CitePrestigePage() {
                           src={villa.photos[0]}
                           alt={villa.titre}
                           fill quality={75}
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover group-hover:scale-105 transition-transform duration-600"
                         />
+                        {/* Overlay hover */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                        {/* Badges */}
                         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
                           <span className={`text-xs font-bold px-3 py-1 rounded-full text-white ${
                             villa.standing === "Haut" ? "bg-[#1e5d2e]" :
@@ -149,6 +154,11 @@ export default function CitePrestigePage() {
                             </span>
                           )}
                         </div>
+                        {/* Nb disponibles */}
+                        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-bold px-3 py-1 rounded-full">
+                          {villa.disponibles} dispo.
+                        </div>
+                        {/* Bouton cœur */}
                         <button
                           onClick={() => enPanier ? remove(villa.slug) : add({ slug: villa.slug, titre: villa.titre, type: villa.type, prix: villa.prix, photo: villa.photos[0] })}
                           className={`absolute bottom-3 right-3 w-9 h-9 rounded-full flex items-center justify-center shadow-md transition-all duration-200 ${
