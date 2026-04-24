@@ -135,7 +135,6 @@ export default function CitePrestigePage() {
                           fill quality={75}
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        {/* Overlay hover */}
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                         {/* Badges */}
                         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
@@ -150,7 +149,7 @@ export default function CitePrestigePage() {
                               {villa.badge}
                             </span>
                           )}
-                        </div> {/* ✅ CORRECTION : </div> manquant ajouté ici */}
+                        </div>
                         {/* Bouton cœur */}
                         <button
                           onClick={() => enPanier ? remove(villa.slug) : add({ slug: villa.slug, titre: villa.titre, type: villa.type, prix: villa.prix, photo: villa.photos[0] })}
