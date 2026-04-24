@@ -147,7 +147,6 @@ export default function VillaDetailPage({ params }: { params: Promise<{ slug: st
                     <MapPin size={13} className="text-[#1e5d2e]" />
                     Bingerville, Abidjan
                     <span className="text-gray-200">·</span>
-                    <span className="text-[#1e5d2e] font-semibold">{villa.disponibles} disponibles</span>
                   </div>
                 </div>
 
