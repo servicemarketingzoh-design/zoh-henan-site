@@ -136,7 +136,6 @@ export default function CitePrestigePage() {
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                        {/* Badges */}
                         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
                           <span className={`text-xs font-bold px-3 py-1 rounded-full text-white ${
                             villa.standing === "Haut" ? "bg-[#1e5d2e]" :
