@@ -19,7 +19,7 @@ const typeLabels: Record<string, string> = {
   "4P Duplex":"Villa Duplex 4 Pièces",
   "3P":       "Villa Basse 3 Pièces",
 };
-const standings = ["Tous les standings", "Moyen", "Bon", "Haut"];
+const standings = ["Tous les standings", "Moyen", "moyen", "Bon", "Haut"];
 
 export default function CitePrestigePage() {
   const [filtre, setFiltre] = useState("Tous");
