@@ -17,7 +17,6 @@ export type Villa = {
   sallesDeBain: number;
   garage: boolean;
   niveaux: string;
-  disponibles: number;
   description: string;
   equipements: string[];
   pieces: Piece[];        // dimensions pièce par pièce
@@ -40,7 +39,6 @@ export const villas: Villa[] = [
     sallesDeBain: 6,
     garage: true,
     niveaux: "R+1 (Duplex)",
-    disponibles: 48,
     badge: "Prestige",
     description:
       "Sommet de l'élégance à la Cité Prestige, la Villa Prestige 6 Pièces offre de vastes espaces de vie sur deux niveaux. Conçue pour une famille exigeante, elle dispose d'un salon double hauteur, d'une salle à manger avec baie vitrée, de chambres spacieuses dont une suite parentale avec dressing, et d'une terrasse panoramique privative.",
@@ -88,7 +86,6 @@ export const villas: Villa[] = [
     sallesDeBain: 5,
     garage: true,
     niveaux: "Plain-pied",
-    disponibles: 65,
     description:
       "La Villa Émeraude offre tout le confort d'une villa 5 pièces en plain-pied. Sa distribution lumineuse avec grand séjour ouvrant sur le jardin, 4 chambres, cuisine équipée et terrasses avant et arrière en fait un choix idéal pour les familles.",
     equipements: [
@@ -132,7 +129,6 @@ export const villas: Villa[] = [
     sallesDeBain: 5,
     garage: true,
     niveaux: "R+1 (Duplex)",
-    disponibles: 55,
     description:
       "La Villa Diamant propose une architecture duplex élégante sur 350 m² de terrain. Le rez-de-chaussée accueille les espaces de vie, tandis que l'étage offre des chambres privatives avec balcon. Un cadre de vie premium pour toute la famille.",
     equipements: [
@@ -172,7 +168,6 @@ export const villas: Villa[] = [
     sallesDeBain: 4,
     garage: true,
     niveaux: "R+1 (Duplex)",
-    disponibles: 110,
     description:
       "La Villa Topaze est la solution idéale pour les couples et jeunes familles souhaitant accéder à la propriété dans un cadre sécurisé. Sur 250 m² de terrain, elle offre des espaces fonctionnels sur deux niveaux avec une belle qualité de finitions.",
     equipements: [
@@ -217,7 +212,6 @@ export const villas: Villa[] = [
     sallesDeBain: 3,
     garage: false,
     niveaux: "Plain-pied",
-    disponibles: 140,
     badge: "Entrée de gamme",
     description:
       "La Villa Saphir est la porte d'entrée vers la propriété à la Cité Prestige. Compacte et bien pensée sur 200 m², elle convient parfaitement aux jeunes actifs et aux couples. Tout le confort nécessaire : séjour agréable, 2 chambres, cuisine équipée et terrasses privatives.",
