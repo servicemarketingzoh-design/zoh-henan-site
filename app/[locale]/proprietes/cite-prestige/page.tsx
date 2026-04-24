@@ -132,7 +132,7 @@ export default function CitePrestigePage() {
 
                       {/* Photo */}
                       <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
+                     <Image
                           src={villa.photos[0]}
                           alt={villa.titre}
                           fill quality={75}
