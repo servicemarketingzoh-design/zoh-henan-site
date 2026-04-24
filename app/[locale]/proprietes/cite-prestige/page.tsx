@@ -153,11 +153,7 @@ export default function CitePrestigePage() {
                               {villa.badge}
                             </span>
                           )}
-                        </div>
-                        {/* Nb disponibles */}
-                        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-bold px-3 py-1 rounded-full">
-                          {villa.disponibles} dispo.
-                        </div>
+                        
                         {/* Bouton cœur */}
                         <button
                           onClick={() => enPanier ? remove(villa.slug) : add({ slug: villa.slug, titre: villa.titre, type: villa.type, prix: villa.prix, photo: villa.photos[0] })}
