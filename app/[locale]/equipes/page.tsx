@@ -90,7 +90,7 @@ const membres: Membre[] = [
     id: 5,
     nom: "Yves-Arnaud DJE BY",
     titre: "Marketing & Communication Director",
-    photo: "/images/nos-equipes/dje by.jpg",
+    photo: "/images/nos-equipes/DJE BY.JPG",
     groupe: "bureau",
     formation: "Master Management-Marketing — (2016-2018) · Double Licence Commerce International & Économie — ISEG Strasbourg & Université Économique de Prague",
     bio: "Spécialiste en management d'équipe, marketing et gestion de projets, Yves-Arnaud DJE BY est un professionnel dynamique fort de plus de 5 ans d'expérience dans des environnements internationaux et multiculturels.",
