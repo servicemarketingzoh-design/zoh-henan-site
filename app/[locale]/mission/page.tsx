@@ -21,7 +21,7 @@ const valeurs = [
   {
     icon: <Handshake size={28} strokeWidth={1.5} className="text-[#1e5d2e]" />,
     title: "Confiance",
-    desc: "Nous opérerons avec confiance des établissements privé, public et tous les souscripteurs.",
+    desc: "Nous opérerons avec confiance des établissements privés, publics et tous les souscripteurs.",
   },
   {
     icon: <TrendingUp size={28} strokeWidth={1.5} className="text-[#1e5d2e]" />,
@@ -108,8 +108,8 @@ export default function MissionPage() {
               <div className="w-10 h-[3px] bg-[#1e5d2e] rounded" />
               <div className="space-y-5 text-gray-600 text-[15px] leading-relaxed">
                 <p>Fondée en <strong className="text-gray-900">2017</strong> avec un capital social de <strong className="text-gray-900">25 000 000 FCFA</strong>, la société immobilière ZOH-HENAN est une société anonyme avec conseil d'administration de droit Ivoirien, dirigée par de jeunes experts Ivoiriens.</p>
-                <p>Son professionnalisme et son expertise ont favorisé un partenariat stratégique internationnale. Forte d'un capital de plus de <strong className="text-gray-900">12 milliards FCFA</strong> et d'une solide présence dans la région Ouest-Africaine, son actionnariat est néanmoins entièrement détenu par des <strong className="text-gray-900">Ivoiriens</strong>.</p>
-                <p>Grâce à sa maîtrise des BTP et de la promotion immobilière, elle a obtenu l'ensemble des agréments et documents administratifs auprès du <strong className="text-gray-900">Ministère de l'Urbanisme et des Cadres de Vie</strong>. Cela lui confère la confiance de nombreux établissements privé, public et tous les souscripteurs.</p>
+                <p>Son professionnalisme et son expertise ont favorisé un partenariat stratégique international. Forte d'un capital de plus de <strong className="text-gray-900">12 milliards FCFA</strong> et d'une solide présence dans la région Ouest-Africaine, son actionnariat est néanmoins entièrement détenu par des <strong className="text-gray-900">Ivoiriens</strong>.</p>
+                <p>Grâce à sa maîtrise des BTP et de la promotion immobilière, elle a obtenu l'ensemble des agréments et documents administratifs auprès du <strong className="text-gray-900">Ministère de l'Urbanisme et des Cadres de Vie</strong>. Cela lui confère la confiance de nombreux établissements privés, publics et tous les souscripteurs.</p>
               </div>
             </div>
 

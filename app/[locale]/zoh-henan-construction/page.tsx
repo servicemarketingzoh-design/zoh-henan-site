@@ -299,7 +299,7 @@ export default function ZohHenanConstructionPage() {
           <div className="absolute inset-0 flex items-center justify-center">
             <p className="text-white/90 text-xl sm:text-2xl font-bold text-center max-w-2xl px-6 leading-relaxed"
               style={{ fontFamily: "var(--font-playfair)" }}>
-              &ldquo;Chaque villa est le fruit d'une expertise collective et d'une exigence absolue.&rdquo;
+              « Chaque villa est le fruit d'une expertise collective et d'une exigence absolue. »
             </p>
           </div>
         </div>
