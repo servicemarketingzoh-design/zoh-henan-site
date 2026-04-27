@@ -346,8 +346,8 @@ export default function Accueil() {
       <section className="bg-white border-t border-[#1e5d2e]/20 py-16 px-6 sm:px-12">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
           <div>
-            <h2 className="text-[#1e5d2e] font-black mb-2 leading-tight whitespace-nowrap" style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(22px,3.5vw,36px)" }}>
-              Intéressez-vous à la Cité Prestige ?
+            <h2 className="text-[#1e5d2e] font-black mb-2 leading-tight whitespace-nowrap" style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(18px,2.5vw,28px)" }}>
+              Intéressé par la Cité Prestige ?
             </h2>
             <p className="text-[#1e5d2e]/70 text-sm">Réservez votre villa dès aujourd'hui et rejoignez la Cité Prestige de Bingerville.</p>
           </div>
