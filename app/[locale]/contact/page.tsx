@@ -12,7 +12,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (!form.nom || !form.email || !form.message) return;
+    if (!form.nom || !form.email || !form.telephone || !form.message) return;
     setSent(true);
   };
 
@@ -145,7 +145,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1">Téléphone</label>
+                      <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide block mb-1">Téléphone *</label>
                       <input
                         type="tel"
                         value={form.telephone}
@@ -181,14 +181,13 @@ export default function ContactPage() {
         <section className="pb-0">
           <div className="w-full h-[400px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.8!2d-3.9925!3d5.3571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCocody%2C%20Abidjan!5e0!3m2!1sfr!2sci!4v1234567890"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-4.0125%2C5.3371%2C-3.9725%2C5.3771&layer=mapnik&marker=5.3571%2C-3.9925"
               width="100%"
               height="400"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Localisation Zoh-Henan Guoji - Abidjan, Cocody"
+              title="Localisation Zoh-Henan Guoji - Abidjan, Cocody, Faya-Cité SIR"
             />
           </div>
         </section>

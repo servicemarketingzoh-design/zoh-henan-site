@@ -6,6 +6,34 @@ import Providers from './components/Providers';
 
 const locales = ['fr', 'en'] as const;
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Zoh Henan Guoji",
+  alternateName: "Zoh-Henan SA",
+  url: "https://www.zoh-henan.com",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.zoh-henan.com/images/logo.png",
+    width: 512,
+    height: 512,
+  },
+  image: "https://www.zoh-henan.com/images/logo.png",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+225-27-22-49-67-39",
+    contactType: "customer service",
+    availableLanguage: ["French"],
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Faya-Cité SIR",
+    addressLocality: "Cocody",
+    addressRegion: "Abidjan",
+    addressCountry: "CI",
+  },
+};
+
 export default async function LocaleLayout({
   children,
   params,
@@ -21,6 +49,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <Providers>
