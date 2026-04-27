@@ -183,7 +183,7 @@ export default function CitePrestigePage() {
                         <div className="flex items-center gap-4 text-gray-500 text-sm mb-5 border-t border-gray-100 pt-3">
                           <span className="flex items-center gap-1.5"><Bed size={14} /> {villa.chambres} ch.</span>
                           <span className="flex items-center gap-1.5"><Bath size={14} /> {villa.sallesDeBain} SDB</span>
-                          <span className="flex items-center gap-1.5"><Ruler size={14} /> {villa.superficieBatie} m²</span>
+                          <span className="flex items-center gap-1.5"><Ruler size={14} /> {villa.superficie} m²</span>
                           {villa.garage && <span className="flex items-center gap-1.5"><Car size={14} /> Garage</span>}
                         </div>
 
