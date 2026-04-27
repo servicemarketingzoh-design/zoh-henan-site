@@ -24,7 +24,7 @@ const membres: Membre[] = [
   {
     id: 1,
     nom: "Mme ZOH Hortense",
-    titre: "Chairwoman of the Board",
+    titre: "Présidente du Conseil d'Administration",
     photo: "/images/nos-equipes/PCA.JPG",
     groupe: "administration",
     formation: "Secteur immobilier — Côte d'Ivoire",
@@ -39,7 +39,7 @@ const membres: Membre[] = [
   {
     id: 2,
     nom: "Marcel Meumika OUEHI",
-    titre: "Chief Executive Officer",
+    titre: "Directeur Général",
     photo: "/images/nos-equipes/DG.JPG",
     groupe: "administration",
     formation: "Ingénieur en Management & Marketing — ESICOM Abidjan Plateau (2005-2008) · BTS Industries Agro-Alimentaires — Lycée Technique d'Abidjan · Baccalauréat série D (1997)",
