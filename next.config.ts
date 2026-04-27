@@ -56,7 +56,11 @@ const nextConfig = {
   },
   images: {
     formats: ['image/webp', 'image/avif'] as ('image/webp' | 'image/avif')[],
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 jours
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'images.pexels.com' },
+    ],
   },
   compress: true,
   poweredByHeader: false, // masque "X-Powered-By: Next.js"

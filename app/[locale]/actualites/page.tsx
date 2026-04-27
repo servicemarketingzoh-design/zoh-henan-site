@@ -5,6 +5,7 @@ import FloatingButtons from "../components/FloatingButtons";
 import Footer from "../components/Footer";
 import { CalendarDays, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { actualites } from "./data";
 
 export default function ActualitesPage() {
@@ -77,8 +78,8 @@ export default function ActualitesPage() {
                   href={`/actualites/${actu.slug}`}
                   className="bg-white rounded-xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col group"
                 >
-                  <div className="relative overflow-hidden">
-                    <img src={actu.img} alt={actu.titre} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="relative overflow-hidden h-48">
+                    <Image src={actu.img} alt={actu.titre} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width:768px) 100vw, 33vw" />
                     <span className="absolute top-3 left-3 bg-[#1e5d2e] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                       {actu.categorie}
                     </span>

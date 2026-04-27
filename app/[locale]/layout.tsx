@@ -1,8 +1,21 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { Playfair_Display, Outfit } from 'next/font/google';
 import '../globals.css';
 import Providers from './components/Providers';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
 
 const locales = ['fr', 'en'] as const;
 
@@ -87,7 +100,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${playfair.variable} ${outfit.variable}`}>
       <head>
         <script
           type="application/ld+json"

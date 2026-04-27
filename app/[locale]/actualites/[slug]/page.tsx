@@ -8,6 +8,7 @@ import Footer from "../../components/Footer";
 import { actualites } from "../data";
 import { CalendarDays, ArrowLeft, ArrowRight, Tag, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ActualiteDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
   const { slug } = use(params);
@@ -26,7 +27,7 @@ export default function ActualiteDetailPage({ params }: { params: Promise<{ slug
 
         {/* HERO IMAGE */}
         <div className="relative w-full h-[420px] overflow-hidden">
-          <img src={actu.img} alt={actu.titre} className="w-full h-full object-cover" />
+          <Image src={actu.img} alt={actu.titre} fill className="object-cover" priority sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
             <div className="max-w-4xl mx-auto">
@@ -122,8 +123,8 @@ export default function ActualiteDetailPage({ params }: { params: Promise<{ slug
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {actualites.filter((a) => a.slug !== slug).slice(0, 3).map((a) => (
                 <Link key={a.slug} href={`/actualites/${a.slug}`} className="group flex flex-col gap-3">
-                  <div className="overflow-hidden rounded-xl">
-                    <img src={a.img} alt={a.titre} className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="overflow-hidden rounded-xl relative h-40">
+                    <Image src={a.img} alt={a.titre} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width:768px) 100vw, 33vw" />
                   </div>
                   <div className="flex items-center gap-2 text-gray-400 text-xs"><CalendarDays size={12} />{a.date}</div>
                   <h3 className="text-gray-800 font-bold text-sm leading-snug group-hover:text-[#1e5d2e] transition-colors" style={{ fontFamily: "var(--font-playfair)" }}>
@@ -245,7 +246,7 @@ function PhotoGallery({ photos }: { photos: string[] }) {
                   i === selectedIndex ? "ring-2 ring-[#1e5d2e] opacity-100 scale-105" : "opacity-40 hover:opacity-70"
                 }`}
               >
-                <img src={photo} alt={`Miniature ${i + 1}`} className="w-14 h-10 object-cover" />
+                <Image src={photo} alt={`Miniature ${i + 1}`} width={56} height={40} className="object-cover" />
               </button>
             ))}
           </div>

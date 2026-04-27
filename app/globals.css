@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-:root {
-  --font-playfair: 'Playfair Display', Georgia, serif;
-  --font-outfit: 'Outfit', system-ui, sans-serif;
-}
+/* Fonts définis via next/font/google dans layout.tsx (variables --font-playfair et --font-outfit) */
 
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-outfit); overflow-x: hidden; }
