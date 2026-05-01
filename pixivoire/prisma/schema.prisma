@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id              String         @id @default(uuid())
+  email           String         @unique
+  nom             String
+  bio             String?
+  photoProfil     String?
+  plan            Plan           @default(FREE)
+  stockageUtilise BigInt         @default(0)
+  isAdmin         Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  galleries       Gallery[]
+  subscriptions   Subscription[]
+}
+
+model Subscription {
+  id                    String    @id @default(uuid())
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id])
+  plan                  Plan
+  statut                SubStatut @default(ACTIF)
+  dateDebut             DateTime
+  dateFin               DateTime
+  cinetpayTransactionId String?
+  createdAt             DateTime  @default(now())
+}
+
+model Gallery {
+  id                  String      @id @default(uuid())
+  userId              String
+  user                User        @relation(fields: [userId], references: [id])
+  titre               String
+  description         String?
+  slug                String      @unique
+  type                GalleryType @default(LIEN_PRIVE)
+  motDePasseHash      String?
+  telechargerAutorise Boolean     @default(false)
+  couvertureUrl       String?
+  createdAt           DateTime    @default(now())
+  photos              Photo[]
+}
+
+model Photo {
+  id           String   @id @default(uuid())
+  galleryId    String
+  gallery      Gallery  @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+  urlOriginale String
+  urlThumbnail String?
+  nomFichier   String
+  tailleBytes  BigInt
+  ordre        Int      @default(0)
+  legende      String?
+  createdAt    DateTime @default(now())
+}
+
+enum Plan {
+  FREE
+  PRO
+  STUDIO
+}
+
+enum SubStatut {
+  ACTIF
+  EXPIRE
+  ANNULE
+}
+
+enum GalleryType {
+  PUBLIQUE
+  LIEN_PRIVE
+  MOT_DE_PASSE
+}
