@@ -1,0 +1,122 @@
+/* ====================================================
+   PIXIVOIRE — Système de thèmes CSS (4 thèmes)
+   Typographie : Playfair Display (titres) + Inter (corps)
+   ==================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---- Thème 1 : Clair "Afrique Vivante" (défaut) ---- */
+[data-theme="afrique-vivante"], :root {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9F5F0;
+  --bg-card: #FFFFFF;
+  --color-primary: #E85D26;
+  --color-primary-hover: #C94E1D;
+  --color-secondary: #2D9B6F;
+  --color-accent: #F5C842;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --border-color: #E5E7EB;
+  --border-hover: #D1D5DB;
+  --shadow: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --navbar-bg: rgba(255,255,255,0.95);
+  --input-bg: #FFFFFF;
+  --badge-free: #6B7280;
+  --badge-pro: #2563EB;
+  --badge-studio: #7C3AED;
+}
+
+/* ---- Thème 2 : Sombre "Or & Nuit" ---- */
+[data-theme="or-nuit"] {
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #141414;
+  --bg-card: #1C1C1C;
+  --color-primary: #D4A017;
+  --color-primary-hover: #B8890F;
+  --color-secondary: #4A7C59;
+  --color-accent: #F0C040;
+  --text-primary: #F5F5F5;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --border-color: #2A2A2A;
+  --border-hover: #3A3A3A;
+  --shadow: 0 1px 3px rgba(0,0,0,0.5);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+  --navbar-bg: rgba(10,10,10,0.95);
+  --input-bg: #1C1C1C;
+  --badge-free: #4B5563;
+  --badge-pro: #1D4ED8;
+  --badge-studio: #6D28D9;
+}
+
+/* ---- Thème 3 : Sombre "Or & Nuit Chaud" ---- */
+[data-theme="or-nuit-chaud"] {
+  --bg-primary: #0D0A07;
+  --bg-secondary: #1A1208;
+  --bg-card: #1F1610;
+  --color-primary: #C8860A;
+  --color-primary-hover: #A8700A;
+  --color-secondary: #5C7A3E;
+  --color-accent: #E8A020;
+  --text-primary: #F0EAD6;
+  --text-secondary: #C4B89A;
+  --text-muted: #8A7A60;
+  --border-color: #2E2018;
+  --border-hover: #3E3020;
+  --shadow: 0 1px 3px rgba(0,0,0,0.6);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  --navbar-bg: rgba(13,10,7,0.95);
+  --input-bg: #1F1610;
+  --badge-free: #5C4A30;
+  --badge-pro: #1D4ED8;
+  --badge-studio: #6D28D9;
+}
+
+/* ---- Thème 4 : Sombre "Or & Nuit Froid" ---- */
+[data-theme="or-nuit-froid"] {
+  --bg-primary: #080A0D;
+  --bg-secondary: #10141A;
+  --bg-card: #151B24;
+  --color-primary: #C8B98A;
+  --color-primary-hover: #A89A6A;
+  --color-secondary: #4A6B8A;
+  --color-accent: #E2D5A0;
+  --text-primary: #E8EDF5;
+  --text-secondary: #A8B4C4;
+  --text-muted: #6A7A8A;
+  --border-color: #1E2530;
+  --border-hover: #2A3440;
+  --shadow: 0 1px 3px rgba(0,0,0,0.6);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  --navbar-bg: rgba(8,10,13,0.95);
+  --input-bg: #151B24;
+  --badge-free: #344050;
+  --badge-pro: #1D4ED8;
+  --badge-studio: #6D28D9;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', Georgia, serif; }
+
+.input-field {
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+.input-field:focus {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: -1px;
+}
