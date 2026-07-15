@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ChatBot from "./ChatBot";
 
 export default function FloatingButtons() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -23,24 +24,8 @@ export default function FloatingButtons() {
   return (
     <div className="fixed bottom-8 right-6 z-[9999] flex flex-col gap-3">
 
-      {/* Support / Headset */}
-      <button
-        title="Support client"
-        aria-label="Support client"
-        style={{
-          width: 52, height: 52, borderRadius: "50%",
-          backgroundColor: "#1e5d2e", border: "none", cursor: "pointer",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 16px rgba(46,125,50,0.45)",
-          transition: "all 0.2s",
-        }}
-        onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#1e5d2e")}
-        onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#1e5d2e")}
-      >
-        <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
-          <path d="M12 2C6.477 2 2 6.477 2 12v3a3 3 0 003 3h1a1 1 0 001-1v-4a1 1 0 00-1-1H4.071A8 8 0 0120 12h-2a1 1 0 00-1 1v4a1 1 0 001 1h1a3 3 0 003-3v-3c0-5.523-4.477-10-10-10z" />
-        </svg>
-      </button>
+      {/* ChatBot */}
+      <ChatBot />
 
       {/* FAQ / Question */}
       <button
