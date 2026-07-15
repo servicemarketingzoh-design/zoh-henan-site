@@ -20,6 +20,8 @@ type Step = {
   messages: string[];
   options?: Option[];
   end?: boolean;
+  // Sujet prix/financement : le bot ne détaille plus, il bascule vers un conseiller humain.
+  handoff?: boolean;
 };
 
 // ── Arbre de conversation ──────────────────────────────────────────────────────
@@ -55,40 +57,40 @@ const FLOW: Record<string, Step> = {
   villas_types: {
     messages: [
       "Voici nos 6 gammes de villas :",
-      "🔹 **Villa SAPHIR** — Basse 3P · 39 530 000 FCFA\n🔹 **Villa ÉMERAUDE** — Basse 5P · 59 000 000 FCFA\n🔹 **Villa TOPAZE** — Duplex 4P · 69 030 000 FCFA\n🔹 **Villa 5P** — Duplex 5P · 65 000 000 FCFA\n🔹 **Villa DIAMANT** — Duplex 5P · 89 810 000 FCFA\n🔹 **Villa PRESTIGE** — Duplex 6P · 130 000 000 FCFA",
-      "Toutes sont livrées avec un **titre de propriété CMPF** inclus. Puis-je vous en dire plus ?",
+      "🔹 **Villa SAPHIR** — Basse 3P\n🔹 **Villa ÉMERAUDE** — Basse 5P\n🔹 **Villa TOPAZE** — Duplex 4P\n🔹 **Villa 5P** — Duplex 5P\n🔹 **Villa DIAMANT** — Duplex 5P\n🔹 **Villa PRESTIGE** — Duplex 6P",
+      "Toutes sont livrées avec un **titre de propriété CMPF** inclus. Pour les tarifs à jour, un conseiller vous répond directement.",
     ],
     options: [
-      { label: "💰 Options de financement", value: "financement" },
-      { label: "🛒 Comment acheter ?", value: "achat" },
+      { label: "📞 Demander les tarifs à un conseiller", value: "handoff" },
       { label: "⬅ Retour aux villas", value: "villas" },
     ],
+    handoff: true,
   },
 
   villas_basse: {
     messages: [
       "Nos villas **plain-pied** sont idéales pour les familles qui préfèrent tout de plein-pied :",
-      "🏠 **Villa SAPHIR** — 3 Pièces, 200 m² terrain, 2 chambres, 2 SDB\n→ À partir de **39 530 000 FCFA**\n\n🏠 **Villa ÉMERAUDE** — 5 Pièces, 300 m² terrain, 4 chambres, 2 SDB, garage\n→ À partir de **59 000 000 FCFA**",
-      "Ces villas conviennent parfaitement aux primo-accédants et aux familles. Que souhaitez-vous faire ?",
+      "🏠 **Villa SAPHIR** — 3 Pièces, 200 m² terrain, 2 chambres, 2 SDB\n\n🏠 **Villa ÉMERAUDE** — 5 Pièces, 300 m² terrain, 4 chambres, 2 SDB, garage",
+      "Ces villas conviennent parfaitement aux primo-accédants et aux familles. Pour le tarif et le financement disponible, un conseiller vous répond directement.",
     ],
     options: [
-      { label: "💰 Financement disponible ?", value: "financement" },
-      { label: "🛒 Comment acheter ?", value: "achat" },
+      { label: "📞 Demander le tarif à un conseiller", value: "handoff" },
       { label: "⬅ Voir aussi les duplex", value: "villas_duplex" },
     ],
+    handoff: true,
   },
 
   villas_duplex: {
     messages: [
       "Nos villas **duplex (R+1)** offrent de grands espaces sur deux niveaux :",
-      "🏘 **Villa TOPAZE** — 4P, 250 m² terrain, 3 chambres, garage\n→ À partir de **69 030 000 FCFA**\n\n🏘 **Villa 5P** — 5P, 280 m² terrain, 4 chambres, 3 SDB, garage\n→ À partir de **65 000 000 FCFA**\n\n🏘 **Villa DIAMANT** — 5P, 350 m² terrain, 4 chambres, 3 SDB\n→ À partir de **89 810 000 FCFA**\n\n🏘 **Villa PRESTIGE** — 6P, 350 m² terrain, 5 chambres, 4 SDB, garage double\n→ À partir de **130 000 000 FCFA**",
-      "Nos duplex sont parfaits pour les familles nombreuses et les investisseurs.",
+      "🏘 **Villa TOPAZE** — 4P, 250 m² terrain, 3 chambres, garage\n\n🏘 **Villa 5P** — 5P, 280 m² terrain, 4 chambres, 3 SDB, garage\n\n🏘 **Villa DIAMANT** — 5P, 350 m² terrain, 4 chambres, 3 SDB\n\n🏘 **Villa PRESTIGE** — 6P, 350 m² terrain, 5 chambres, 4 SDB, garage double",
+      "Nos duplex sont parfaits pour les familles nombreuses et les investisseurs. Pour le tarif et le financement disponible, un conseiller vous répond directement.",
     ],
     options: [
-      { label: "💰 Financement disponible ?", value: "financement" },
-      { label: "🛒 Comment acheter ?", value: "achat" },
+      { label: "📞 Demander le tarif à un conseiller", value: "handoff" },
       { label: "⬅ Voir aussi les basses", value: "villas_basse" },
     ],
+    handoff: true,
   },
 
   financement: {
@@ -106,50 +108,50 @@ const FLOW: Record<string, Step> = {
 
   financement_credit: {
     messages: [
-      "ZOH-HENAN travaille avec plusieurs partenaires bancaires :",
-      "🏦 **BHCI** (Banque de l'Habitat de Côte d'Ivoire) — notre partenaire officiel avec des conditions préférentielles pour la Cité Prestige.\n\n🏦 **Société Générale CI** — journées immobilier partenaires, dossiers accompagnés.\n\n🏦 **Plusieurs autres banques** acceptant les crédits habitat sur 10 à 20 ans.",
-      "Nos conseillers vous aident à monter votre dossier gratuitement. Voulez-vous être rappelé ?",
+      "Pour un crédit immobilier, ZOH-HENAN travaille avec plusieurs partenaires bancaires (BHCI, Société Générale CI et d'autres établissements) sur la Cité Prestige.",
+      "Les taux, durées et conditions exactes dépendent de votre profil — un conseiller vous accompagne gratuitement pour monter votre dossier.",
     ],
     options: [
-      { label: "📞 Être rappelé par un conseiller", value: "conseiller" },
+      { label: "📞 Discuter avec un conseiller (WhatsApp)", value: "handoff" },
       { label: "⬅ Autres options de financement", value: "financement" },
     ],
+    handoff: true,
   },
 
   financement_cnps: {
     messages: [
-      "Excellente nouvelle ! ZOH-HENAN a signé un **accord de partenariat avec la CNPS** (Caisse Nationale de Prévoyance Sociale).",
-      "En tant qu'affilié CNPS, vous bénéficiez de :\n✅ Conditions de financement avantageuses\n✅ Taux préférentiels négociés\n✅ Modalités de remboursement adaptées\n✅ Accompagnement personnalisé",
-      "Contactez-nous avec votre numéro d'affiliation CNPS pour démarrer votre dossier.",
+      "Bonne nouvelle : ZOH-HENAN a signé un **accord de partenariat avec la CNPS** pour faciliter l'accès au logement de ses affiliés.",
+      "Les conditions précises (taux, modalités, dossier) sont à voir directement avec un conseiller, avec votre numéro d'affiliation CNPS.",
     ],
     options: [
-      { label: "📞 Contacter un conseiller", value: "conseiller" },
+      { label: "📞 Discuter avec un conseiller (WhatsApp)", value: "handoff" },
       { label: "⬅ Retour au financement", value: "financement" },
     ],
+    handoff: true,
   },
 
   financement_sgci: {
     messages: [
       "ZOH-HENAN et la Société Générale CI organisent régulièrement des **Journées de l'Immobilier** dans les agences SGCI à travers Abidjan.",
-      "En tant que client SGCI, vous pouvez bénéficier de conditions spéciales. Rapprochez-vous de votre agence SGCI ou contactez-nous directement.",
+      "Un conseiller peut vous donner les conditions spécifiques à ce partenariat.",
     ],
     options: [
-      { label: "📞 Contacter un conseiller", value: "conseiller" },
+      { label: "📞 Discuter avec un conseiller (WhatsApp)", value: "handoff" },
       { label: "⬅ Retour au financement", value: "financement" },
     ],
+    handoff: true,
   },
 
   financement_comptant: {
     messages: [
-      "Parfait ! L'achat comptant est la solution la plus rapide pour acquérir votre villa.",
-      "Le processus est simplifié :\n1️⃣ Choix de votre villa\n2️⃣ Réservation et signature\n3️⃣ Versement du prix\n4️⃣ Remise des clés + titre CMPF",
-      "Un conseiller peut vous accompagner pour toutes les formalités. Voulez-vous en savoir plus ?",
+      "L'achat comptant est la solution la plus rapide pour acquérir votre villa.",
+      "Un conseiller peut vous accompagner pour toutes les formalités et vous communiquer le prix exact selon la villa choisie.",
     ],
     options: [
+      { label: "📞 Discuter avec un conseiller (WhatsApp)", value: "handoff" },
       { label: "🛒 Processus d'achat complet", value: "achat" },
-      { label: "📞 Parler à un conseiller", value: "conseiller" },
-      { label: "⬅ Retour au menu", value: "start" },
     ],
+    handoff: true,
   },
 
   achat: {
@@ -210,12 +212,30 @@ const newMsg = (from: "bot" | "user", text: string, typing = false): Message => 
   id: ++msgId, from, text, typing,
 });
 
+// Nombre d'échanges avant proposition proactive de passer à un conseiller.
+const HANDOFF_THRESHOLD = 6;
+
+// Libellés utilisés pour donner du contexte au conseiller lors de la bascule.
+const TOPIC_LABELS: Record<string, string> = {
+  financement_credit: "un crédit immobilier",
+  financement_cnps: "le financement CNPS",
+  financement_sgci: "le partenariat Société Générale",
+  financement_comptant: "un achat comptant",
+  villas_types: "les tarifs des villas",
+  villas_basse: "les tarifs des villas plain-pied",
+  villas_duplex: "les tarifs des villas duplex",
+  localisation: "la localisation du projet",
+  garanties: "les garanties du projet",
+};
+
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [options, setOptions] = useState<Option[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [stepKey, setStepKey] = useState("start");
+  const [exchangeCount, setExchangeCount] = useState(0);
+  const [nudgeShown, setNudgeShown] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   // Scroll au dernier message
@@ -228,7 +248,7 @@ export default function ChatBot() {
     if (open && messages.length === 0) playStep("start");
   }, [open]);
 
-  const playStep = async (key: string) => {
+  const playStep = async (key: string, count = exchangeCount) => {
     const step = FLOW[key];
     if (!step) return;
     setStepKey(key);
@@ -242,21 +262,63 @@ export default function ChatBot() {
       await delay(180);
     }
 
+    // Après N échanges sur un sujet non-sensible, on propose de passer à un humain.
+    if (!step.end && !step.handoff && count >= HANDOFF_THRESHOLD && !nudgeShown) {
+      setNudgeShown(true);
+      const nudgeText = "Je vois qu'on échange depuis un moment 🙂 Voulez-vous que je vous mette directement en relation avec un conseiller ?";
+      setIsTyping(true);
+      await delay(600 + nudgeText.length * 12);
+      setIsTyping(false);
+      setMessages((prev) => [...prev, newMsg("bot", nudgeText)]);
+      setOptions([
+        { label: "📞 Oui, contacter un conseiller", value: "handoff" },
+        { label: "Non merci, continuer", value: `__resume:${key}` },
+      ]);
+      return;
+    }
+
     if (step.options) setOptions(step.options);
   };
 
+  // Point unique de bascule vers un humain — pour brancher un vrai chat live plus
+  // tard, il suffit de remplacer cette ouverture WhatsApp par l'ouverture du chat live.
+  // Doit rester synchrone : appelée après un `await`, les navigateurs bloquent le popup.
+  const openWhatsAppHandoff = (topicKey: string) => {
+    const topic = TOPIC_LABELS[topicKey] ?? "mon projet immobilier";
+    const text = `Bonjour ZOH-HENAN Immobilier, je discutais avec l'assistant du site au sujet de : ${topic}. Pouvez-vous m'aider ?`;
+    window.open(`https://wa.me/2250716171717?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
+  };
+
   const handleOption = async (opt: Option) => {
+    if (opt.value === "handoff") openWhatsAppHandoff(stepKey);
+
     setOptions([]);
     setMessages((prev) => [...prev, newMsg("user", opt.label)]);
     await delay(300);
-    playStep(opt.value);
+
+    if (opt.value === "handoff") {
+      playStep("conseiller");
+      return;
+    }
+    if (opt.value.startsWith("__resume:")) {
+      const key = opt.value.slice("__resume:".length);
+      const resumedOptions = FLOW[key]?.options;
+      if (resumedOptions) setOptions(resumedOptions);
+      return;
+    }
+
+    const nextCount = exchangeCount + 1;
+    setExchangeCount(nextCount);
+    playStep(opt.value, nextCount);
   };
 
   const handleReset = () => {
     setMessages([]);
     setOptions([]);
     setIsTyping(false);
-    setTimeout(() => playStep("start"), 100);
+    setExchangeCount(0);
+    setNudgeShown(false);
+    setTimeout(() => playStep("start", 0), 100);
   };
 
   const whatsappUrl = `https://wa.me/2250716171717?text=${encodeURIComponent("Bonjour ZOH-HENAN Immobilier, je souhaite obtenir des informations sur vos villas.")}`;
