@@ -270,7 +270,7 @@ export default function Accueil() {
             {/* SONGON — carte "À venir" (2/5) */}
             <div className="lg:col-span-2 relative rounded-2xl overflow-hidden min-h-[480px] flex flex-col justify-end group">
               <img
-                src="public/images/photo-1500382017468-9049fed747ef.jpeg"
+                src="/images/photo-1500382017468-9049fed747ef.jpeg"
                 alt="Projet Songon"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale"
               />

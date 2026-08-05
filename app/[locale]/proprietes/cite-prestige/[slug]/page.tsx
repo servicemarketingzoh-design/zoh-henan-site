@@ -20,10 +20,52 @@ const typeLabels: Record<string, string> = {
 };
 import { useCart } from "../../../components/CartContext";
 
-export default function VillaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params);
+const BASE_URL = "https://www.zoh-henan.com";
+
+export default function VillaDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+  const { slug, locale } = use(params);
   const villa = villas.find((v) => v.slug === slug);
   if (!villa) notFound();
+
+  const pageUrl = `${BASE_URL}/${locale}/proprietes/cite-prestige/${slug}`;
+  const villaJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    name: villa.titre,
+    description: villa.description,
+    url: pageUrl,
+    image: villa.photos.map((p) => (p.startsWith("http") ? p : `${BASE_URL}${p}`)),
+    numberOfRooms: villa.chambres,
+    numberOfBathroomsTotal: villa.sallesDeBain,
+    floorSize: {
+      "@type": "QuantitativeValue",
+      value: villa.superficieBatie,
+      unitCode: "MTK",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bingerville",
+      addressRegion: "Abidjan",
+      addressCountry: "CI",
+    },
+    offers: {
+      "@type": "Offer",
+      price: villa.prix,
+      priceCurrency: "XOF",
+      availability: "https://schema.org/InStock",
+      url: pageUrl,
+    },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: `${BASE_URL}/${locale}/accueil` },
+      { "@type": "ListItem", position: 2, name: "Propriétés", item: `${BASE_URL}/${locale}/proprietes` },
+      { "@type": "ListItem", position: 3, name: "Cité Prestige", item: `${BASE_URL}/${locale}/proprietes/cite-prestige` },
+      { "@type": "ListItem", position: 4, name: villa.titre, item: pageUrl },
+    ],
+  };
 
   const { add, remove, isInCart } = useCart();
   const enPanier = isInCart(villa.slug);
@@ -73,6 +115,15 @@ export default function VillaDetailPage({ params }: { params: Promise<{ slug: st
           </div>
         </div>
       )}
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(villaJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
 
       <main className="min-h-screen pt-[70px] bg-gray-50">
 

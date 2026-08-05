@@ -70,6 +70,12 @@ export default function HeroSlider() {
             textShadow: "0 4px 30px rgba(0,0,0,0.4)",
           }}
         >
+          <span
+            className="block font-sans font-semibold uppercase tracking-widest text-white/90 mb-2"
+            style={{ fontSize: "clamp(11px, 1.2vw, 15px)" }}
+          >
+            Promoteur Immobilier à Abidjan · Villas à Bingerville
+          </span>
           CONSTRUIRE AUJOURD&apos;HUI,<br />
           POUR LOGER LA CÔTE D&apos;IVOIRE DE DEMAIN
         </h1>

@@ -10,8 +10,25 @@ import { CalendarDays, ArrowLeft, ArrowRight, Tag, ChevronLeft, ChevronRight } f
 import Link from "next/link";
 import Image from "next/image";
 
+const BASE_URL = "https://www.zoh-henan.com";
+
+const MOIS_FR: Record<string, string> = {
+  janvier: "01", février: "02", mars: "03", avril: "04", mai: "05", juin: "06",
+  juillet: "07", août: "08", septembre: "09", octobre: "10", novembre: "11", décembre: "12",
+};
+
+// Convertit une date affichée en français ("08 Février 2026") en ISO 8601 pour le JSON-LD.
+function toIsoDate(dateFr: string): string | undefined {
+  const match = dateFr.trim().match(/^(\d{1,2})\s+([a-zéû]+)\s+(\d{4})$/i);
+  if (!match) return undefined;
+  const [, day, moisRaw, year] = match;
+  const mois = MOIS_FR[moisRaw.toLowerCase()];
+  if (!mois) return undefined;
+  return `${year}-${mois}-${day.padStart(2, "0")}`;
+}
+
 export default function ActualiteDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
-  const { slug } = use(params);
+  const { slug, locale } = use(params);
   const actu = actualites.find((a) => a.slug === slug);
   if (!actu) notFound();
 
@@ -19,10 +36,45 @@ export default function ActualiteDetailPage({ params }: { params: Promise<{ slug
   const prev = actualites[index - 1] ?? null;
   const next = actualites[index + 1] ?? null;
 
+  const pageUrl = `${BASE_URL}/${locale}/actualites/${slug}`;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: actu.titre,
+    description: actu.extrait,
+    image: [actu.img.startsWith("http") ? actu.img : `${BASE_URL}${actu.img}`],
+    datePublished: toIsoDate(actu.date),
+    url: pageUrl,
+    author: { "@type": "Organization", name: "Zoh Henan Guoji" },
+    publisher: {
+      "@type": "Organization",
+      name: "Zoh Henan Guoji",
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/images/logo.png` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: `${BASE_URL}/${locale}/accueil` },
+      { "@type": "ListItem", position: 2, name: "Actualités", item: `${BASE_URL}/${locale}/actualites` },
+      { "@type": "ListItem", position: 3, name: actu.titre, item: pageUrl },
+    ],
+  };
+
   return (
     <>
       <Header />
       <FloatingButtons />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <main className="min-h-screen pt-[70px]">
 
         {/* HERO IMAGE */}
