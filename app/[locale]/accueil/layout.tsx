@@ -9,20 +9,27 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Zoh Henan Guoji – Promoteur Immobilier de Confiance à Abidjan, Côte d'Ivoire",
+    title: "Zoh Henan Guoji – Promoteur Immobilier à Bingerville, Abidjan",
     description:
-      "Zoh Henan Guoji, votre promoteur immobilier à Abidjan. Découvrez la Cité Prestige de Bingerville : 619 villas modernes de 3 à 6 pièces. 120+ villas déjà livrées depuis 2017.",
+      "Zoh Henan Guoji, promoteur immobilier à Abidjan. Découvrez la promotion immobilière de la Cité Prestige à Bingerville : 619 villas modernes de 3 à 6 pièces. 120+ villas déjà livrées depuis 2017.",
     keywords: [
       "promoteur immobilier Abidjan",
+      "promoteur immobilier Côte d'Ivoire",
+      "promoteur immobilier Bingerville",
+      "meilleur promoteur immobilier Abidjan",
+      "promotion immobilière Bingerville",
       "villa Bingerville",
       "Cité Prestige Bingerville",
       "immobilier Côte d'Ivoire",
       "acheter villa Abidjan",
+      "acheter villa Bingerville",
       "logement Cocody Abidjan",
       "Zoh Henan Guoji",
       "Zoh Henan immobilier",
+      "Zoh-Henan Guoji Bingerville",
       "villa neuve Abidjan",
       "programme immobilier Côte d'Ivoire",
+      "programme immobilier Bingerville",
     ],
     alternates: {
       canonical: `${BASE_URL}/${locale}/accueil`,

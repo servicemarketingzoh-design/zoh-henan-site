@@ -19,7 +19,7 @@ export default function Footer() {
             className="object-contain mb-4 brightness-0 invert"
           />
           <p className="text-gray-400 text-sm leading-relaxed">
-            Promoteur immobilier ivoirien<br />Constructeur agréé
+            Promoteur immobilier à Abidjan, spécialiste de la promotion immobilière à Bingerville. Constructeur agréé par l&apos;État ivoirien.
           </p>
         </div>
 

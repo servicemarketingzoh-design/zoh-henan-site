@@ -6,12 +6,40 @@ import FloatingButtons from "../components/FloatingButtons";
 import Footer from "../components/Footer";
 import {
   Building2, Map, Home, ShieldCheck, Award, Handshake,
-  TrendingUp, MessageCircle, Phone, CalendarDays, ArrowRight, ChevronLeft, ChevronRight
+  TrendingUp, MessageCircle, Phone, CalendarDays, ArrowRight, ChevronLeft, ChevronRight, ChevronDown
 } from "lucide-react";
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { actualites } from "../actualites/data";
+
+const faq = [
+  {
+    question: "Qui est Zoh-Henan Guoji ?",
+    reponse:
+      "Zoh-Henan Guoji est un promoteur immobilier basé à Abidjan, en Côte d'Ivoire, fondé en 2017. Nous concevons et construisons des programmes immobiliers résidentiels, dont la Cité Prestige à Bingerville, lauréate du Prix du Meilleur Projet Immobilier au SICI 2026.",
+  },
+  {
+    question: "Où se trouve la promotion immobilière de Zoh-Henan Guoji à Bingerville ?",
+    reponse:
+      "Notre programme phare, la Cité Prestige, est une promotion immobilière de 619 villas sur 31 hectares, située à Bingerville, à environ 20 minutes du Plateau d'Abidjan.",
+  },
+  {
+    question: "Quels types de villas propose ce promoteur immobilier à Bingerville ?",
+    reponse:
+      "La Cité Prestige propose 6 gammes de villas de 3 à 6 pièces, en plain-pied ou en duplex (SAPHIR, ÉMERAUDE, TOPAZE, DIAMANT, PRESTIGE), toutes livrées avec un titre de propriété CMPF inclus.",
+  },
+  {
+    question: "Comment financer l'achat d'une villa avec Zoh-Henan Guoji ?",
+    reponse:
+      "Plusieurs options sont disponibles : crédit immobilier via nos partenaires bancaires (BHCI, Société Générale CI), financement CNPS pour les affiliés, ou achat comptant. Nos conseillers accompagnent gratuitement chaque dossier.",
+  },
+  {
+    question: "Zoh-Henan Guoji est-il un promoteur immobilier agréé en Côte d'Ivoire ?",
+    reponse:
+      "Oui. Zoh-Henan Guoji est agréé par le Ministère de l'Urbanisme et des Cadres de Vie, dispose d'un Arrêté de Concession Définitive (ACD) et livre chaque villa avec son titre de propriété CMPF.",
+  },
+];
 
 function useCountUp(target: number, duration = 2000, start = false) {
   const [count, setCount] = useState(0);
@@ -202,6 +230,29 @@ function ActualitesCarousel() {
   );
 }
 
+function FaqItem({ question, reponse }: { question: string; reponse: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border border-gray-100 rounded-xl overflow-hidden bg-gray-50">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+      >
+        <span className="text-gray-900 font-bold text-sm" style={{ fontFamily: "var(--font-playfair)" }}>
+          {question}
+        </span>
+        <ChevronDown
+          size={18}
+          className={`text-[#1e5d2e] shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && (
+        <p className="px-5 pb-4 text-gray-500 text-sm leading-relaxed">{reponse}</p>
+      )}
+    </div>
+  );
+}
+
 export default function Accueil() {
   return (
     <>
@@ -339,6 +390,38 @@ export default function Accueil() {
             </Link>
           </div>
           <ActualitesCarousel />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faq.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.reponse },
+            })),
+          }),
+        }}
+      />
+      <section className="py-16 sm:py-24 px-6 sm:px-12 lg:px-20 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-[#1e5d2e] text-xs font-semibold tracking-[4px] uppercase mb-3">Questions fréquentes</p>
+            <h2 className="text-gray-900 font-black" style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(26px,4vw,40px)" }}>
+              Tout savoir sur votre promoteur immobilier à Bingerville
+            </h2>
+            <div className="w-10 h-[3px] bg-[#1e5d2e] rounded mx-auto mt-4" />
+          </div>
+          <div className="space-y-3">
+            {faq.map((item, i) => (
+              <FaqItem key={i} question={item.question} reponse={item.reponse} />
+            ))}
+          </div>
         </div>
       </section>
 
