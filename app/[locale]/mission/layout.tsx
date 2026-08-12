@@ -9,18 +9,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Notre Mission – Promoteur Immobilier de Confiance en Côte d'Ivoire | Zoh Henan",
+    title: "Notre Mission – Promoteur Immobilier de Confiance en Côte d'Ivoire | Zoh-Henan",
     description:
       "Fondée en 2017, Zoh-Henan SA révolutionne l'immobilier ivoirien avec transparence et accessibilité. Capital 100% ivoirien, 12 milliards FCFA d'actifs, 120+ villas livrées à Bingerville.",
     keywords: [
-      "mission Zoh Henan",
+      "mission Zoh-Henan",
       "promoteur immobilier Côte d'Ivoire",
       "immobilier ivoirien confiance",
       "promoteur agréé Abidjan",
-      "Zoh Henan histoire",
+      "Zoh-Henan histoire",
       "société immobilière Abidjan 2017",
       "capital ivoirien immobilier",
-      "Zoh Henan valeurs",
+      "Zoh-Henan valeurs",
     ],
     alternates: {
       canonical: `${BASE_URL}/${locale}/mission`,
@@ -31,11 +31,11 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: "Notre Mission – Zoh Henan Guoji, Immobilier Ivoirien de Confiance",
+      title: "Notre Mission – Zoh-Henan Immobilier, Immobilier Ivoirien de Confiance",
       description:
         "Depuis 2017, Zoh-Henan SA construit avec intégrité. 120+ villas livrées, 12 milliards FCFA d'actifs, 100% capital ivoirien. Prix SICI 2026 du Meilleur Projet Immobilier.",
       url: `${BASE_URL}/${locale}/mission`,
-      images: [{ url: `${BASE_URL}/images/logo.png`, width: 512, height: 512, alt: "Zoh Henan Guoji" }],
+      images: [{ url: `${BASE_URL}/images/logo.png`, width: 512, height: 512, alt: "Zoh-Henan Immobilier" }],
     },
   };
 }

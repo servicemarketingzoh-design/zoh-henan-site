@@ -30,7 +30,7 @@ const membres: Membre[] = [
     formation: "Secteur immobilier — Côte d'Ivoire",
     bio: "Mme Zoh Hortense est une dirigeante reconnue dans le secteur immobilier en Côte d'Ivoire. Partie de la base, avec pour moteur une vision claire et une détermination constante, elle a su transformer ses ambitions en réalisations concrètes.",
     experience: [
-      "Présidente du Conseil d'Administration de ZOH-HENAN GUOJI SA, où elle définit et oriente les grandes stratégies de développement de l'entreprise.",
+      "Présidente du Conseil d'Administration de ZOH-HENAN IMMOBILIER SA, où elle définit et oriente les grandes stratégies de développement de l'entreprise.",
       "Sous sa direction, ZOH-HENAN s'impose progressivement comme un acteur de référence grâce à des projets immobiliers d'envergure en Côte d'Ivoire et à l'international.",
       "L'une des rares femmes à accéder au poste de PCA dans le secteur immobilier ivoirien.",
       "Son parcours, marqué par le travail acharné et l'abnégation, fait d'elle une source d'inspiration pour les femmes et l'ensemble des acteurs du monde entrepreneurial.",
@@ -45,11 +45,11 @@ const membres: Membre[] = [
     formation: "Ingénieur en Management & Marketing — ESICOM Abidjan Plateau (2005-2008) · BTS Industries Agro-Alimentaires — Lycée Technique d'Abidjan · Baccalauréat série D (1997)",
     bio: "Marcel Meumika Ouehi est une figure respectée dans le secteur de la construction et de la promotion immobilière en Côte d'Ivoire. Né le 20 août 1978 à Tieupleu (Danané), il incarne les valeurs de rigueur, de persévérance et de leadership.",
     experience: [
-      "Directeur Général de ZOH-HENAN GUOJI SA depuis juin 2019 — dirige l'ensemble des opérations et assure le positionnement stratégique sur le marché ivoirien.",
+      "Directeur Général de ZOH-HENAN IMMOBILIER SA depuis juin 2019 — dirige l'ensemble des opérations et assure le positionnement stratégique sur le marché ivoirien.",
       "Directeur Général Adjoint de ZOH-HENAN (2017-2019) — chargé de la gestion et de la mise en place du projet de 1 000 logements bon standing en Côte d'Ivoire.",
       "Directeur Général de VALES Côte d'Ivoire (SVCI) de 2012 à 2017 — renforcement des compétences en gestion de projets BTP.",
       "Responsable du projet de construction du marché de la Première Dame à Yopougon-Selmer (2009-2012).",
-      "Missions internationales : Chine (Pékin, 2016), Sierra Leone (Freetown, 2017), Zambie (2017) dans le cadre des projets de ZOH-HENAN GUOJI.",
+      "Missions internationales : Chine (Pékin, 2016), Sierra Leone (Freetown, 2017), Zambie (2017) dans le cadre des projets de ZOH-HENAN IMMOBILIER.",
     ],
   },
 
@@ -63,7 +63,7 @@ const membres: Membre[] = [
     formation: "Master 2 Marketing/Management — EDHEC Yamoussoukro · Licence Professionnelle Marketing/Management · BTS Tourisme et Loisirs",
     bio: "Affoué Natogoma AKA N'DIAYE possède une carrière remarquable de plus de 15 ans dans le secteur bancaire, ponctuée par une progression constante dans des postes à responsabilités croissantes.",
     experience: [
-      "Responsable du Service Développement de ZOH-HENAN GUOJI SA — conçoit et pilote des actions de développement stratégique, développe des partenariats commerciaux.",
+      "Responsable du Service Développement de ZOH-HENAN IMMOBILIER SA — conçoit et pilote des actions de développement stratégique, développe des partenariats commerciaux.",
       "Superviseur banque chez KEDA Côte d'Ivoire (2024) — transition vers le secteur industriel avant de rejoindre ZOH-HENAN.",
       "Responsable d'agence à la NSIA Banque CI (ex-BIAO-CI) dans plusieurs localités clés : Yamoussoukro, Divo, Bingerville, Yopougon, Cocody et Marcory.",
       "Plus de 15 ans chez NSIA Banque (2007-2024) : stagiaire commerciale → assistante clientèle → conseillère → responsable d'agence.",
@@ -79,7 +79,7 @@ const membres: Membre[] = [
     formation: "Certification Marketing Management — AVIS ACADEMY (2022) · BTS Secrétariat Bureautique — CBCG Cocody",
     bio: "Marie BEHIBRO est une professionnelle accomplie dans le domaine commercial, administratif et managérial, avec plus de 15 ans d'expérience dans des structures de renom.",
     experience: [
-      "Directrice Commerciale chez ZOH-HENAN GUOJI SA depuis mai 2024 — dirige l'équipe commerciale, met en œuvre les stratégies de vente, assure le suivi client et la recherche de financement.",
+      "Directrice Commerciale chez ZOH-HENAN IMMOBILIER SA depuis mai 2024 — dirige l'équipe commerciale, met en œuvre les stratégies de vente, assure le suivi client et la recherche de financement.",
       "Responsable Commerciale & Responsable des Achats chez BEL DÉCLIC IMMOBILIER (2017) — coordination commerciale, gestion des stocks, supervision d'équipe.",
       "Assistante du Directeur Général chez INTERBAT pendant près de 10 ans (2008-2017) — gestion des plannings, reporting, correspondance des services.",
       "Leadership naturel, capacité à fédérer une équipe autour d'objectifs communs.",
@@ -95,7 +95,7 @@ const membres: Membre[] = [
     formation: "Master Management-Marketing — (2016-2018) · Double Licence Commerce International & Économie — ISEG Strasbourg & Université Économique de Prague",
     bio: "Spécialiste en management d'équipe, marketing et gestion de projets, Yves-Arnaud DJE BY est un professionnel dynamique fort de plus de 5 ans d'expérience dans des environnements internationaux et multiculturels.",
     experience: [
-      "Directeur du département Marketing & Communication de ZOH-HENAN GUOJI SA depuis 2024 — élabore et pilote les campagnes marketing, conçoit les supports de communication interne et externe.",
+      "Directeur du département Marketing & Communication de ZOH-HENAN IMMOBILIER SA depuis 2024 — élabore et pilote les campagnes marketing, conçoit les supports de communication interne et externe.",
       "Consultant en gestion de projet et management d'entreprise chez O'JASSER Consulting depuis 2019 — pilotage stratégique, formation et accompagnement opérationnel.",
       "Coordinateur activités & relation client à l'Hôtel Labranda Golden Beach, Espagne (2018) — relation client en français et anglais.",
       "Commercial Microsoft chez Techsell Strasbourg (2015) — promotion et vente de produits technologiques, objectifs régulièrement dépassés.",
@@ -111,7 +111,7 @@ const membres: Membre[] = [
     formation: "Licence Professionnelle Comptabilité & Finance — Groupe CEFIAT Salomon (2020) · BTS Finance, Comptabilité & Gestion — EPCCI-CI (2013) · Baccalauréat série D (2011)",
     bio: "Né en Côte d'Ivoire en 1992, Jean Noël N'ZI OI N'ZI s'est très tôt intéressé aux chiffres, à l'organisation et à la fiabilité des processus financiers.",
     experience: [
-      "Contrôleur de Gestion chez ZOH-HENAN GUOJI SA depuis mars 2025 — analyse des processus de production BTP et VRD, suivi budgétaire, évaluation des coûts de revient et des marges.",
+      "Contrôleur de Gestion chez ZOH-HENAN IMMOBILIER SA depuis mars 2025 — analyse des processus de production BTP et VRD, suivi budgétaire, évaluation des coûts de revient et des marges.",
       "Responsable du Pôle Économique & RH chez IDÉAL BLUE SARL (2021-2024) — planification budgétaire, états financiers, suivi des performances, gestion RH.",
       "Responsable Administratif & Financier chez ATM Informatique (2019-2021) — comptabilité ERP Odoo, fiscalité, contrôle budgétaire.",
       "Comptable principal chez Ivodine & cabinet Wildfin (2017) — tenue comptable, déclarations fiscales, contrôle interne.",

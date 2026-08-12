@@ -187,7 +187,7 @@ export default function ContactPage() {
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              title="Localisation Zoh-Henan Guoji - Abidjan, Cocody, Faya-Cité SIR"
+              title="Localisation Zoh-Henan Immobilier - Abidjan, Cocody, Faya-Cité SIR"
             />
           </div>
         </section>

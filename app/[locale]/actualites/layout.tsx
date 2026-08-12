@@ -9,12 +9,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Actualités & Événements – Zoh Henan Guoji | Immobilier Abidjan",
+    title: "Actualités & Événements – Zoh-Henan Immobilier | Immobilier Abidjan",
     description:
-      "Suivez toute l'actualité de Zoh-Henan Guoji : Prix SICI 2026 du Meilleur Projet Immobilier, livraisons de villas, partenariat CNPS, et événements immobiliers à Abidjan.",
+      "Suivez toute l'actualité de Zoh-Henan Immobilier : Prix SICI 2026 du Meilleur Projet Immobilier, livraisons de villas, partenariat CNPS, et événements immobiliers à Abidjan.",
     keywords: [
       "actualités immobilier Abidjan",
-      "Zoh Henan actualités",
+      "Zoh-Henan actualités",
       "SICI 2026 prix immobilier",
       "événements immobilier Côte d'Ivoire",
       "livraison villa Bingerville",
@@ -30,7 +30,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: "Actualités – Zoh Henan Guoji | Prix SICI 2026 & Livraisons",
+      title: "Actualités – Zoh-Henan Immobilier | Prix SICI 2026 & Livraisons",
       description:
         "ZOH-HENAN remporte le Prix du Meilleur Projet Immobilier au SICI 2026. Suivez nos actualités, livraisons et événements à Abidjan.",
       url: `${BASE_URL}/${locale}/actualites`,
@@ -39,7 +39,7 @@ export async function generateMetadata({
           url: `${BASE_URL}/images/actualites/sici-2026/0D9A9697.webp`,
           width: 1200,
           height: 630,
-          alt: "Prix SICI 2026 – Zoh Henan Guoji Meilleur Projet Immobilier",
+          alt: "Prix SICI 2026 – Zoh-Henan Immobilier Meilleur Projet Immobilier",
         },
       ],
     },

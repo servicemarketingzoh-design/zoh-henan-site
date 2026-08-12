@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Galerie Photos – Cité Prestige Bingerville | Zoh Henan Guoji",
+    title: "Galerie Photos – Cité Prestige Bingerville | Zoh-Henan Immobilier",
     description:
       "Découvrez en images nos villas et la Cité Prestige de Bingerville. Plus de 400 photos de constructions, événements et réalisations immobilières à Abidjan, Côte d'Ivoire.",
     keywords: [
@@ -18,7 +18,7 @@ export async function generateMetadata({
       "images villas Côte d'Ivoire",
       "photos construction immobilier Abidjan",
       "villa prestige photos",
-      "Zoh Henan galerie",
+      "Zoh-Henan galerie",
     ],
     alternates: {
       canonical: `${BASE_URL}/${locale}/galerie`,
@@ -29,16 +29,16 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: "Galerie – Nos Villas & Réalisations | Zoh Henan Guoji",
+      title: "Galerie – Nos Villas & Réalisations | Zoh-Henan Immobilier",
       description:
-        "400+ photos de la Cité Prestige de Bingerville : villas, construction, événements et équipes. Visualisez votre futur chez Zoh-Henan Guoji.",
+        "400+ photos de la Cité Prestige de Bingerville : villas, construction, événements et équipes. Visualisez votre futur chez Zoh-Henan Immobilier.",
       url: `${BASE_URL}/${locale}/galerie`,
       images: [
         {
           url: `${BASE_URL}/images/galerie/HEROS.JPG`,
           width: 1200,
           height: 630,
-          alt: "Galerie Zoh Henan Guoji – Cité Prestige Bingerville",
+          alt: "Galerie Zoh-Henan Immobilier – Cité Prestige Bingerville",
         },
       ],
     },

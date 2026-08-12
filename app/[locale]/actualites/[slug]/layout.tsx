@@ -13,7 +13,7 @@ export async function generateMetadata({
 
   if (!article) return {};
 
-  const title = `${article.titre} | Zoh Henan Guoji`;
+  const title = `${article.titre} | Zoh-Henan Immobilier`;
   const description = article.extrait;
 
   return {
@@ -22,7 +22,7 @@ export async function generateMetadata({
     keywords: [
       "actualité immobilier Abidjan",
       article.categorie,
-      "Zoh Henan actualité",
+      "Zoh-Henan actualité",
       "immobilier Côte d'Ivoire",
     ],
     alternates: {

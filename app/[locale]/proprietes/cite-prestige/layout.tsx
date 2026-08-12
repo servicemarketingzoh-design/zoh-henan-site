@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Cité Prestige Bingerville – Villas 3 à 6 Pièces | Zoh Henan Guoji",
+    title: "Cité Prestige Bingerville – Villas 3 à 6 Pièces | Zoh-Henan Immobilier",
     description:
       "31 hectares, 619 villas à Bingerville, Abidjan. Villas Saphir 3P, Topaze 4P, Émeraude 5P et Prestige 6P. Agréées Ministère de l'Urbanisme. Prix accessibles avec financement CNPS.",
     keywords: [
@@ -18,9 +18,9 @@ export async function generateMetadata({
       "villa 4 pièces Abidjan",
       "villa 5 pièces Bingerville",
       "villa 6 pièces Abidjan",
-      "villa Saphir Zoh Henan",
-      "villa Topaze Zoh Henan",
-      "villa Émeraude Zoh Henan",
+      "villa Saphir Zoh-Henan",
+      "villa Topaze Zoh-Henan",
+      "villa Émeraude Zoh-Henan",
       "villa Prestige Abidjan",
       "villa duplex Bingerville",
       "logement Bingerville",
@@ -35,7 +35,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: "Cité Prestige Bingerville – 619 Villas | Zoh Henan Guoji",
+      title: "Cité Prestige Bingerville – 619 Villas | Zoh-Henan Immobilier",
       description:
         "Découvrez la Cité Prestige : 31 hectares, 619 villas sécurisées à Bingerville, Abidjan. Villas de 3 à 6 pièces avec financement possible via CNPS.",
       url: `${BASE_URL}/${locale}/proprietes/cite-prestige`,

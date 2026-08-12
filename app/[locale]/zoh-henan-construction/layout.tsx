@@ -32,7 +32,7 @@ export async function generateMetadata({
     openGraph: {
       title: "Zoh Henan Construction – BTP & Génie Civil en Côte d'Ivoire",
       description:
-        "Construction, VRD et bâtiments à Abidjan. La branche BTP de Zoh-Henan Guoji bâtit avec excellence technique et rigueur ivoirienne.",
+        "Construction, VRD et bâtiments à Abidjan. La branche BTP de Zoh-Henan Immobilier bâtit avec excellence technique et rigueur ivoirienne.",
       url: `${BASE_URL}/${locale}/zoh-henan-construction`,
       images: [
         {

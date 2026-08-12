@@ -24,8 +24,8 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": ["Organization", "LocalBusiness", "RealEstateAgent"],
     "@id": "https://www.zoh-henan.com/#organization",
-    name: "Zoh Henan Guoji",
-    alternateName: ["Zoh-Henan SA", "ZOH HENAN GUOJI"],
+    name: "Zoh-Henan Immobilier",
+    alternateName: ["Zoh-Henan SA", "ZOH-HENAN IMMOBILIER"],
     url: "https://www.zoh-henan.com",
     logo: {
       "@type": "ImageObject",
@@ -70,9 +70,9 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": "https://www.zoh-henan.com/#website",
-    name: "Zoh Henan Guoji",
+    name: "Zoh-Henan Immobilier",
     url: "https://www.zoh-henan.com",
-    description: "Site officiel de Zoh Henan Guoji, promoteur immobilier en Côte d'Ivoire.",
+    description: "Site officiel de Zoh-Henan Immobilier, promoteur immobilier en Côte d'Ivoire.",
     publisher: { "@id": "https://www.zoh-henan.com/#organization" },
     potentialAction: {
       "@type": "SearchAction",

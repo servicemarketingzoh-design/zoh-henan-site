@@ -30,7 +30,7 @@ export default function ActualitesPage() {
             </h1>
             <div className="w-16 h-[3px] bg-white/40 rounded mx-auto mb-8" />
             <p className="text-white/90 text-lg max-w-xl mx-auto">
-              Suivez toute l'actualité de ZOH-HENAN GUOJI : lancements de projets, partenariats, événements et bien plus.
+              Suivez toute l'actualité de ZOH-HENAN IMMOBILIER : lancements de projets, partenariats, événements et bien plus.
             </p>
           </div>
         </section>

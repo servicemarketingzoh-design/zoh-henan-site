@@ -13,15 +13,15 @@ export async function generateMetadata({
 
   if (!villa) return {};
 
-  const title = `${villa.titre} – Villa ${villa.type} à Bingerville, Abidjan | Zoh Henan Guoji`;
-  const description = `${villa.titre} : villa ${villa.type} de ${villa.superficie} m² à la Cité Prestige de Bingerville. ${villa.chambres} chambres, ${villa.sallesDeBain} salles de bain${villa.garage ? ", garage" : ""}. Prix : ${formatPrix(villa.prix)}. Promoteur Zoh Henan Guoji.`;
+  const title = `${villa.titre} – Villa ${villa.type} à Bingerville, Abidjan | Zoh-Henan Immobilier`;
+  const description = `${villa.titre} : villa ${villa.type} de ${villa.superficie} m² à la Cité Prestige de Bingerville. ${villa.chambres} chambres, ${villa.sallesDeBain} salles de bain${villa.garage ? ", garage" : ""}. Prix : ${formatPrix(villa.prix)}. Promoteur Zoh-Henan Immobilier.`;
 
   return {
     title,
     description,
     keywords: [
       `villa ${villa.type} Bingerville`,
-      `${villa.gamme} Zoh Henan`,
+      `${villa.gamme} Zoh-Henan`,
       `villa ${villa.chambres} chambres Abidjan`,
       `${villa.titre}`,
       "achat villa Bingerville",

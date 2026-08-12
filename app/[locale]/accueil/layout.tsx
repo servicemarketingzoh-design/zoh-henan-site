@@ -9,9 +9,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Zoh Henan Guoji – Promoteur Immobilier à Bingerville, Abidjan",
+    title: "Zoh-Henan Immobilier – Promoteur Immobilier à Bingerville, Abidjan",
     description:
-      "Zoh Henan Guoji, promoteur immobilier à Abidjan. Découvrez la promotion immobilière de la Cité Prestige à Bingerville : 619 villas modernes de 3 à 6 pièces. 120+ villas déjà livrées depuis 2017.",
+      "Zoh-Henan Immobilier, promoteur immobilier à Abidjan. Découvrez la promotion immobilière de la Cité Prestige à Bingerville : 619 villas modernes de 3 à 6 pièces. 120+ villas déjà livrées depuis 2017.",
     keywords: [
       "promoteur immobilier Abidjan",
       "promoteur immobilier Côte d'Ivoire",
@@ -24,9 +24,9 @@ export async function generateMetadata({
       "acheter villa Abidjan",
       "acheter villa Bingerville",
       "logement Cocody Abidjan",
-      "Zoh Henan Guoji",
-      "Zoh Henan immobilier",
-      "Zoh-Henan Guoji Bingerville",
+      "Zoh-Henan Immobilier",
+      "Zoh-Henan immobilier",
+      "Zoh-Henan Immobilier Bingerville",
       "villa neuve Abidjan",
       "programme immobilier Côte d'Ivoire",
       "programme immobilier Bingerville",
@@ -40,16 +40,16 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: "Zoh Henan Guoji – Promoteur Immobilier à Abidjan, Côte d'Ivoire",
+      title: "Zoh-Henan Immobilier – Promoteur Immobilier à Abidjan, Côte d'Ivoire",
       description:
-        "619 villas à Bingerville, Abidjan. Découvrez la Cité Prestige de Zoh Henan Guoji, promoteur immobilier de référence en Côte d'Ivoire depuis 2017.",
+        "619 villas à Bingerville, Abidjan. Découvrez la Cité Prestige de Zoh-Henan Immobilier, promoteur immobilier de référence en Côte d'Ivoire depuis 2017.",
       url: `${BASE_URL}/${locale}/accueil`,
       images: [
         {
           url: `${BASE_URL}/images/accueil/hero-slider/GUERITE ENTREE PRINCIPALE.jpg`,
           width: 1200,
           height: 630,
-          alt: "Cité Prestige Bingerville – Zoh Henan Guoji",
+          alt: "Cité Prestige Bingerville – Zoh-Henan Immobilier",
         },
       ],
     },

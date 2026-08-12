@@ -7,7 +7,7 @@ import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-5xl mx-auto px-6 sm:px-12 lg:px-20 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-6xl mx-auto px-6 sm:px-12 lg:px-20 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14">
 
         {/* LOGO + PRÉSENTATION */}
         <div className="lg:col-span-1">
@@ -18,9 +18,11 @@ export default function Footer() {
             height={45}
             className="object-contain mb-4 brightness-0 invert"
           />
-          <p className="text-gray-400 text-sm leading-relaxed">
-            Promoteur immobilier à Abidjan, spécialiste de la promotion immobilière à Bingerville. Constructeur agréé par l&apos;État ivoirien.
-          </p>
+          <div className="text-gray-400 text-sm leading-relaxed space-y-1">
+            <p>Promoteur Immobilier</p>
+            <p>Constructeur Agréé</p>
+            <p>Reconnu par l&apos;État de Côte d&apos;Ivoire</p>
+          </div>
         </div>
 
         {/* NAVIGATION */}
@@ -82,7 +84,7 @@ export default function Footer() {
 
       {/* BAS DU FOOTER */}
       <div className="border-t border-gray-800 px-6 sm:px-12 lg:px-20 py-5">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-gray-500 text-xs">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-gray-500 text-xs">
           <p>© {new Date().getFullYear()} ZOH-HENAN Immobilier. Tous droits réservés.</p>
           <p>Abidjan, Côte d'Ivoire</p>
         </div>

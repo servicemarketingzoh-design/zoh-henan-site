@@ -45,10 +45,10 @@ export default function ActualiteDetailPage({ params }: { params: Promise<{ slug
     image: [actu.img.startsWith("http") ? actu.img : `${BASE_URL}${actu.img}`],
     datePublished: toIsoDate(actu.date),
     url: pageUrl,
-    author: { "@type": "Organization", name: "Zoh Henan Guoji" },
+    author: { "@type": "Organization", name: "Zoh-Henan Immobilier" },
     publisher: {
       "@type": "Organization",
-      name: "Zoh Henan Guoji",
+      name: "Zoh-Henan Immobilier",
       logo: { "@type": "ImageObject", url: `${BASE_URL}/images/logo.png` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },

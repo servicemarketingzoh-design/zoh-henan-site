@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Nos Propriétés – Villas à Bingerville & Songon | Zoh Henan Guoji",
+    title: "Nos Propriétés – Villas à Bingerville & Songon | Zoh-Henan Immobilier",
     description:
       "Découvrez nos programmes immobiliers en Côte d'Ivoire : Cité Prestige Bingerville (619 villas) et le futur Projet Songon. Villas 3 à 6 pièces, accessibles et de qualité supérieure.",
     keywords: [
@@ -21,7 +21,7 @@ export async function generateMetadata({
       "programme immobilier Bingerville",
       "villa duplex Abidjan",
       "achat villa Côte d'Ivoire",
-      "Zoh Henan propriétés",
+      "Zoh-Henan propriétés",
       "Cité Prestige villa prix",
     ],
     alternates: {
@@ -33,7 +33,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: "Nos Propriétés – Villas à Bingerville | Zoh Henan Guoji",
+      title: "Nos Propriétés – Villas à Bingerville | Zoh-Henan Immobilier",
       description:
         "Villas de prestige à Bingerville, Abidjan. Cité Prestige : 619 villas 3 à 6 pièces dans un cadre sécurisé. Agréées Ministère de l'Urbanisme.",
       url: `${BASE_URL}/${locale}/proprietes`,
@@ -42,7 +42,7 @@ export async function generateMetadata({
           url: `${BASE_URL}/images/accueil/cite-prestige/PLAN DE MASSE 01.webp`,
           width: 1200,
           height: 630,
-          alt: "Plan de masse Cité Prestige Bingerville – Zoh Henan Guoji",
+          alt: "Plan de masse Cité Prestige Bingerville – Zoh-Henan Immobilier",
         },
       ],
     },

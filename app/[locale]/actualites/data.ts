@@ -80,14 +80,14 @@ La Direction Générale tient à remercier chaleureusement toutes les équipes q
   {
     slug: "pose-premiere-pierre-2eme-tranche-2026",
     titre: "Pose de la 1ère Pierre — 2ème Tranche de la Cité Prestige Bingerville",
-    extrait: "Le 28 février 2026, ZOH-HENAN GUOJI a marqué une nouvelle étape historique avec la pose de la première pierre de la 2ème tranche de construction de la Cité Prestige, en présence des autorités, partenaires et invités d'honneur.",
+    extrait: "Le 28 février 2026, ZOH-HENAN IMMOBILIER a marqué une nouvelle étape historique avec la pose de la première pierre de la 2ème tranche de construction de la Cité Prestige, en présence des autorités, partenaires et invités d'honneur.",
     contenu: `Le 28 février 2026, la Cité Prestige Zoh-Henan de Bingerville a été le théâtre d'un moment symbolique et historique : la cérémonie de pose de la première pierre de la 2ème tranche de construction.
 
 Dès 9h du matin, autorités locales, partenaires institutionnels, clients et invités d'honneur se sont réunis sur le site pour partager ce moment fort qui marque une nouvelle phase dans l'avancement de l'un des projets immobiliers les plus ambitieux de Côte d'Ivoire.
 
 Ce geste symbolique — poser ensemble la première pierre — est bien plus qu'un acte protocolaire. Il représente la concrétisation d'une vision : offrir à des centaines de familles ivoiriennes un cadre de vie moderne, sécurisé et de qualité, à Bingerville. Il témoigne également de la solidité des fondations — humaines, financières et juridiques — sur lesquelles repose le projet Cité Prestige.
 
-La Direction Générale de ZOH-HENAN GUOJI a tenu à remercier chaleureusement l'ensemble des partenaires, autorités et invités présents pour leur soutien et leur confiance tout au long de cette aventure. Une mention spéciale a été adressée à la BHCI — Banque de l'Habitat de Côte d'Ivoire — partenaire financier clé, dont l'engagement déterminant a rendu possible la réalisation de ce projet d'envergure.
+La Direction Générale de ZOH-HENAN IMMOBILIER a tenu à remercier chaleureusement l'ensemble des partenaires, autorités et invités présents pour leur soutien et leur confiance tout au long de cette aventure. Une mention spéciale a été adressée à la BHCI — Banque de l'Habitat de Côte d'Ivoire — partenaire financier clé, dont l'engagement déterminant a rendu possible la réalisation de ce projet d'envergure.
 
 La 2ème tranche de construction vient compléter et amplifier le travail déjà accompli lors de la première phase, qui a permis la livraison de plus de 120 villas à des familles ivoiriennes. Elle marque la continuité d'un projet de grande ampleur, pensé pour durer et pour transformer durablement le paysage immobilier ivoirien.
 
@@ -124,11 +124,11 @@ Ensemble, nous bâtissons l'avenir. Merci pour votre confiance.`,
     slug: "accord-partenariat-cnps",
     titre: "Signature d'un accord de partenariat avec la CNPS",
     extrait: "Un nouveau partenariat a été signé avec la Caisse Nationale de Prévoyance Sociale pour faciliter l'accès au logement des travailleurs ivoiriens.",
-    contenu: `ZOH-HENAN GUOJI et la Caisse Nationale de Prévoyance Sociale (CNPS) ont signé un accord de partenariat stratégique visant à faciliter l'accès au logement pour les travailleurs ivoiriens affiliés à la CNPS.
+    contenu: `ZOH-HENAN IMMOBILIER et la Caisse Nationale de Prévoyance Sociale (CNPS) ont signé un accord de partenariat stratégique visant à faciliter l'accès au logement pour les travailleurs ivoiriens affiliés à la CNPS.
 
 Cet accord permet aux travailleurs du secteur formel de bénéficier de conditions de financement avantageuses pour l'acquisition d'une villa à la Cité Prestige de Bingerville. Des taux préférentiels et des modalités de remboursement adaptées ont été négociés pour rendre le rêve immobilier accessible au plus grand nombre.
 
-Cette signature s'inscrit dans la vision de ZOH-HENAN GUOJI de démocratiser l'accès à la propriété en Côte d'Ivoire, en travaillant main dans la main avec les institutions de protection sociale.
+Cette signature s'inscrit dans la vision de ZOH-HENAN IMMOBILIER de démocratiser l'accès à la propriété en Côte d'Ivoire, en travaillant main dans la main avec les institutions de protection sociale.
 
 La cérémonie de signature s'est tenue en présence des directions générales des deux institutions et de représentants du Ministère de la Construction.`,
     date: "02 Février 2026",
@@ -145,13 +145,13 @@ La cérémonie de signature s'est tenue en présence des directions générales 
     slug: "120-villas-livrees-cap-historique",
     titre: "120 villas livrées — Un cap historique pour ZOH-HENAN",
     extrait: "La société franchit un cap historique avec la livraison de sa 120ème villa à Bingerville, confirmant son rôle de leader immobilier en Côte d'Ivoire.",
-    contenu: `ZOH-HENAN GUOJI a franchi un cap symbolique et historique avec la livraison officielle de sa 120ème villa à la Cité Prestige de Bingerville. Cet événement marque l'aboutissement de plusieurs années d'efforts, de rigueur et d'engagement envers nos clients.
+    contenu: `ZOH-HENAN IMMOBILIER a franchi un cap symbolique et historique avec la livraison officielle de sa 120ème villa à la Cité Prestige de Bingerville. Cet événement marque l'aboutissement de plusieurs années d'efforts, de rigueur et d'engagement envers nos clients.
 
 La cérémonie de remise des clés s'est tenue en présence des fondateurs de la société, des familles bénéficiaires, et de représentants des cabinets partenaires (CAIE, Atelier Privé d'Urbanisme, Cabinet SYGMA).
 
 Chaque villa livrée est accompagnée d'un Certificat de Mutation de Propriété Foncière (CMPF), garantissant à chaque propriétaire la pleine et entière propriété de son bien, dans la plus totale transparence juridique.
 
-À cette occasion, le Directeur Général de ZOH-HENAN GUOJI a réaffirmé l'ambition de la société : livrer l'intégralité des 619 villas de la Cité Prestige dans les délais convenus, et lancer de nouveaux projets dans d'autres communes d'Abidjan.`,
+À cette occasion, le Directeur Général de ZOH-HENAN IMMOBILIER a réaffirmé l'ambition de la société : livrer l'intégralité des 619 villas de la Cité Prestige dans les délais convenus, et lancer de nouveaux projets dans d'autres communes d'Abidjan.`,
     date: "10 Janvier 2026",
     categorie: "Projet",
     img: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80",
@@ -294,14 +294,14 @@ La cérémonie s'est conclue dans une atmosphère festive, avec des danses tradi
   {
     slug: "obtention-agrement-promoteur",
     titre: "ZOH-HENAN obtient son agrément Promoteur Immobilier",
-    extrait: "Le Ministère de la Construction a officiellement délivré l'agrément Promoteur Immobilier à ZOH-HENAN GUOJI, une étape clé dans notre développement.",
-    contenu: `ZOH-HENAN GUOJI a reçu des mains du Ministère de la Construction, du Logement et de l'Urbanisme son agrément officiel en tant que Promoteur Immobilier agréé de Côte d'Ivoire.
+    extrait: "Le Ministère de la Construction a officiellement délivré l'agrément Promoteur Immobilier à ZOH-HENAN IMMOBILIER, une étape clé dans notre développement.",
+    contenu: `ZOH-HENAN IMMOBILIER a reçu des mains du Ministère de la Construction, du Logement et de l'Urbanisme son agrément officiel en tant que Promoteur Immobilier agréé de Côte d'Ivoire.
 
-Cet agrément vient couronner plusieurs années de travail rigoureux, de conformité aux normes et de construction de la confiance avec les autorités ivoiriennes. Il confirme que ZOH-HENAN GUOJI répond à toutes les exigences légales et techniques requises pour exercer l'activité de promotion immobilière en Côte d'Ivoire.
+Cet agrément vient couronner plusieurs années de travail rigoureux, de conformité aux normes et de construction de la confiance avec les autorités ivoiriennes. Il confirme que ZOH-HENAN IMMOBILIER répond à toutes les exigences légales et techniques requises pour exercer l'activité de promotion immobilière en Côte d'Ivoire.
 
 Cet agrément s'ajoute à l'Arrêté de Concession Définitive (ACD) et au Certificat de Mutation de Propriété Foncière (CMPF) déjà obtenus, renforçant ainsi le cadre juridique solide qui protège nos clients et investisseurs.
 
-La direction de ZOH-HENAN GUOJI tient à remercier les équipes du Ministère pour leur accompagnement tout au long du processus.`,
+La direction de ZOH-HENAN IMMOBILIER tient à remercier les équipes du Ministère pour leur accompagnement tout au long du processus.`,
     date: "5 Septembre 2025",
     categorie: "Actualité",
     img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80",

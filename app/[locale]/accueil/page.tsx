@@ -15,12 +15,12 @@ import { actualites } from "../actualites/data";
 
 const faq = [
   {
-    question: "Qui est Zoh-Henan Guoji ?",
+    question: "Qui est Zoh-Henan Immobilier ?",
     reponse:
-      "Zoh-Henan Guoji est un promoteur immobilier basé à Abidjan, en Côte d'Ivoire, fondé en 2017. Nous concevons et construisons des programmes immobiliers résidentiels, dont la Cité Prestige à Bingerville, lauréate du Prix du Meilleur Projet Immobilier au SICI 2026.",
+      "Zoh-Henan Immobilier est un promoteur immobilier basé à Abidjan, en Côte d'Ivoire, fondé en 2017. Nous concevons et construisons des programmes immobiliers résidentiels, dont la Cité Prestige à Bingerville, lauréate du Prix du Meilleur Projet Immobilier au SICI 2026.",
   },
   {
-    question: "Où se trouve la promotion immobilière de Zoh-Henan Guoji à Bingerville ?",
+    question: "Où se trouve la promotion immobilière de Zoh-Henan Immobilier à Bingerville ?",
     reponse:
       "Notre programme phare, la Cité Prestige, est une promotion immobilière de 619 villas sur 31 hectares, située à Bingerville, à environ 20 minutes du Plateau d'Abidjan.",
   },
@@ -30,14 +30,14 @@ const faq = [
       "La Cité Prestige propose 6 gammes de villas de 3 à 6 pièces, en plain-pied ou en duplex (SAPHIR, ÉMERAUDE, TOPAZE, DIAMANT, PRESTIGE), toutes livrées avec un titre de propriété CMPF inclus.",
   },
   {
-    question: "Comment financer l'achat d'une villa avec Zoh-Henan Guoji ?",
+    question: "Comment financer l'achat d'une villa avec Zoh-Henan Immobilier ?",
     reponse:
       "Plusieurs options sont disponibles : crédit immobilier via nos partenaires bancaires (BHCI, Société Générale CI), financement CNPS pour les affiliés, ou achat comptant. Nos conseillers accompagnent gratuitement chaque dossier.",
   },
   {
-    question: "Zoh-Henan Guoji est-il un promoteur immobilier agréé en Côte d'Ivoire ?",
+    question: "Zoh-Henan Immobilier est-il un promoteur immobilier agréé en Côte d'Ivoire ?",
     reponse:
-      "Oui. Zoh-Henan Guoji est agréé par le Ministère de l'Urbanisme et des Cadres de Vie, dispose d'un Arrêté de Concession Définitive (ACD) et livre chaque villa avec son titre de propriété CMPF.",
+      "Oui. Zoh-Henan Immobilier est agréé par le Ministère de l'Urbanisme et des Cadres de Vie, dispose d'un Arrêté de Concession Définitive (ACD) et livre chaque villa avec son titre de propriété CMPF.",
   },
 ];
 
