@@ -1,5 +1,6 @@
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { actualites as articlesStatiques, type Actualite } from "@/app/[locale]/actualites/data";
+import { supabasePublishableKey, supabaseUrl } from "@/lib/supabase/config";
 
 type NewsRow = {
   id: string;
@@ -15,11 +16,7 @@ type NewsRow = {
 };
 
 function publicClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-  if (!url || !key) return null;
-
-  return createSupabaseClient(url, key, {
+  return createSupabaseClient(supabaseUrl, supabasePublishableKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }
