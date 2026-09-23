@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { actualites } from "../data";
+import { getNewsBySlug } from "@/lib/news";
 
 const BASE_URL = "https://www.zoh-henan.com";
 
@@ -9,7 +9,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const article = actualites.find((a) => a.slug === slug);
+  const article = await getNewsBySlug(slug, locale);
 
   if (!article) return {};
 
@@ -54,3 +54,4 @@ export async function generateMetadata({
 export default function ArticleDetailLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
+

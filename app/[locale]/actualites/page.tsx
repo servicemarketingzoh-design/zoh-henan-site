@@ -1,16 +1,21 @@
-"use client";
-
 import Header from "../components/Header";
 import FloatingButtons from "../components/FloatingButtons";
 import Footer from "../components/Footer";
 import { CalendarDays, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { actualites } from "./data";
+import { getPublishedNews } from "@/lib/news";
 
-export default function ActualitesPage() {
-  const visibles = actualites.filter((a) => !a.hidden);
+export default async function ActualitesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const visibles = await getPublishedNews(locale);
   const [hero, ...reste] = visibles;
+
+  if (!hero) return null;
 
   return (
     <>
@@ -107,3 +112,4 @@ export default function ActualitesPage() {
     </>
   );
 }
+
