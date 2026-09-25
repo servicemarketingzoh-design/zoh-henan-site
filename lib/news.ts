@@ -63,25 +63,24 @@ export async function getPublishedNews(locale = "fr"): Promise<Actualite[]> {
     return fallback;
   }
 
-  const dynamicArticles = (data as NewsRow[]).map(mapRow);
-  const dynamicSlugs = new Set(dynamicArticles.map((article) => article.slug));
-  return [...dynamicArticles, ...fallback.filter((article) => !dynamicSlugs.has(article.slug))];
+  return (data as NewsRow[]).map(mapRow);
 }
 
 export async function getNewsBySlug(slug: string, locale = "fr") {
   const supabase = publicClient();
-  if (supabase) {
-    const { data } = await supabase
-      .from("news_articles")
-      .select("id, slug, title, excerpt, content, category, cover_image_url, gallery_urls, video_url, published_at")
-      .eq("locale", locale)
-      .eq("slug", slug)
-      .eq("status", "published")
-      .maybeSingle();
+  const { data, error } = await supabase
+    .from("news_articles")
+    .select("id, slug, title, excerpt, content, category, cover_image_url, gallery_urls, video_url, published_at")
+    .eq("locale", locale)
+    .eq("slug", slug)
+    .eq("status", "published")
+    .maybeSingle();
 
-    if (data) return mapRow(data as NewsRow);
+  if (error) {
+    console.error("Impossible de charger l'actualité Supabase", error.message);
+    return articlesStatiques.find((article) => article.slug === slug && !article.hidden) ?? null;
   }
 
-  return articlesStatiques.find((article) => article.slug === slug && !article.hidden) ?? null;
+  return data ? mapRow(data as NewsRow) : null;
 }
 

@@ -149,3 +149,96 @@ export async function createArticle(formData: FormData) {
   redirect(`/${locale}/admin/actualites?created=1`);
 }
 
+export async function updateArticle(formData: FormData) {
+  const locale = safeLocale(formData.get("locale"));
+  const id = String(formData.get("id") ?? "");
+  const { supabase, userId } = await requireAdmin(locale);
+  const title = String(formData.get("title") ?? "").trim();
+  const slug = slugify(String(formData.get("slug") || title));
+  const excerpt = String(formData.get("excerpt") ?? "").trim();
+  const content = String(formData.get("content") ?? "").trim();
+  const category = String(formData.get("category") ?? "").trim();
+  const videoUrl = String(formData.get("videoUrl") ?? "").trim() || null;
+  const status = formData.get("status") === "published" ? "published" : "draft";
+  const publicationDate = String(formData.get("publicationDate") ?? "");
+  const cover = formData.get("cover");
+  const gallery = formData.getAll("gallery").filter((item): item is File => item instanceof File && item.size > 0);
+  const replaceGallery = formData.get("replaceGallery") === "on";
+
+  if (!id || !title || !slug || excerpt.length < 10 || content.length < 20 || !category) {
+    redirect(`/${locale}/admin/actualites/${id}/edit?error=champs`);
+  }
+
+  const { data: currentArticle } = await supabase
+    .from("news_articles")
+    .select("cover_image_url, gallery_urls")
+    .eq("id", id)
+    .eq("locale", locale)
+    .maybeSingle();
+
+  if (!currentArticle) redirect(`/${locale}/admin/actualites`);
+
+  let coverUrl = currentArticle.cover_image_url;
+  let galleryUrls = replaceGallery ? [] : currentArticle.gallery_urls;
+  try {
+    if (cover instanceof File && cover.size > 0) {
+      coverUrl = await uploadImage(supabase, cover, userId);
+    }
+    for (const image of gallery) galleryUrls.push(await uploadImage(supabase, image, userId));
+  } catch {
+    redirect(`/${locale}/admin/actualites/${id}/edit?error=televersement`);
+  }
+
+  if (galleryUrls.length === 0) galleryUrls = [coverUrl];
+  const publishedAt = status === "published"
+    ? publicationDate ? `${publicationDate}T12:00:00.000Z` : new Date().toISOString()
+    : null;
+
+  const { error } = await supabase
+    .from("news_articles")
+    .update({
+      slug,
+      title,
+      excerpt,
+      content,
+      category,
+      cover_image_url: coverUrl,
+      gallery_urls: galleryUrls,
+      video_url: videoUrl,
+      status,
+      published_at: publishedAt,
+      updated_by: userId,
+    })
+    .eq("id", id)
+    .eq("locale", locale);
+
+  if (error) {
+    const code = error.code === "23505" ? "slug" : "enregistrement";
+    redirect(`/${locale}/admin/actualites/${id}/edit?error=${code}`);
+  }
+
+  revalidatePath(`/${locale}/actualites`);
+  revalidatePath(`/${locale}/actualites/${slug}`);
+  revalidatePath(`/${locale}/admin/actualites`);
+  redirect(`/${locale}/admin/actualites?updated=1`);
+}
+
+export async function deleteArticle(formData: FormData) {
+  const locale = safeLocale(formData.get("locale"));
+  const id = String(formData.get("id") ?? "");
+  const { supabase } = await requireAdmin(locale);
+  if (!id) redirect(`/${locale}/admin/actualites`);
+
+  const { error } = await supabase
+    .from("news_articles")
+    .delete()
+    .eq("id", id)
+    .eq("locale", locale);
+
+  if (error) redirect(`/${locale}/admin/actualites?error=suppression`);
+
+  revalidatePath(`/${locale}/actualites`);
+  revalidatePath(`/${locale}/admin/actualites`);
+  redirect(`/${locale}/admin/actualites?deleted=1`);
+}
+
