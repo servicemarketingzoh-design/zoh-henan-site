@@ -31,9 +31,10 @@ export default function Footer() {
           <ul className="space-y-2">
             {[
               { href: "/accueil", label: "Accueil" },
-              { href: "/mission", label: "Notre Mission" },
+              { href: "/mission", label: "Chez Zoh" },
               { href: "/proprietes", label: "Nos Propriétés" },
               { href: "/galerie", label: "Galerie" },
+              { href: "/blog", label: "Blog" },
               { href: "/contact", label: "Contact" },
             ].map((link) => (
               <li key={link.href}>

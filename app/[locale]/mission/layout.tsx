@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: "Notre Mission – Promoteur Immobilier de Confiance en Côte d'Ivoire | Zoh-Henan",
+    title: "Chez Zoh-Henan – Histoire, Mission, Valeurs & Vision | Promoteur Immobilier",
     description:
       "Fondée en 2017, Zoh-Henan SA révolutionne l'immobilier ivoirien avec transparence et accessibilité. Capital 100% ivoirien, 12 milliards FCFA d'actifs, 120+ villas livrées à Bingerville.",
     keywords: [

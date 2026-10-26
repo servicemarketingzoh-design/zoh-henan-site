@@ -5,7 +5,7 @@ import FloatingButtons from "../components/FloatingButtons";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import { ShieldCheck, Handshake, Award, TrendingUp, CheckCircle2, Users, Building2, MapPin } from "lucide-react";
+import { ShieldCheck, Handshake, Award, TrendingUp, CheckCircle2, Users, Building2, MapPin, Target, Eye } from "lucide-react";
 
 const valeurs = [
   {
@@ -58,6 +58,19 @@ const experts = [
   },
 ];
 
+const sections = [
+  { id: "histoire", label: "Histoire" },
+  { id: "mission", label: "Mission" },
+  { id: "valeurs", label: "Valeurs" },
+  { id: "vision", label: "Vision" },
+  { id: "slogan", label: "Slogan" },
+];
+
+// À valider par la direction : texte de vision et slogan proposés.
+const vision =
+  "Devenir le promoteur immobilier de référence en Côte d'Ivoire et en Afrique de l'Ouest, en permettant à chaque famille ivoirienne d'accéder à la pleine propriété d'un logement de qualité, dans des cités modernes, sécurisées et durables.";
+const slogan = "Bâtir la confiance, livrer la propriété.";
+
 export default function MissionPage() {
   return (
     <>
@@ -82,20 +95,31 @@ export default function MissionPage() {
           {/* ligne verte gauche */}
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#1e5d2e]" />
           <div className="relative max-w-4xl mx-auto">
-            <p className="text-[#1e5d2e] text-xs font-semibold tracking-[5px] uppercase mb-5">Qui sommes-nous</p>
+            <p className="text-[#4ade80] text-xs font-semibold tracking-[5px] uppercase mb-5">Qui sommes-nous</p>
             <h1 className="text-white font-black leading-tight mb-6"
               style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(34px,5.5vw,64px)" }}>
-              Notre Mission
+              Chez Zoh-Henan
             </h1>
             <div className="w-14 h-[3px] bg-[#1e5d2e] rounded mb-8" />
             <p className="text-white/80 text-lg leading-relaxed max-w-2xl">
-              Révolutionner le secteur immobilier en Côte d'Ivoire en rétablissant la confiance des investisseurs grâce à la transparence, la rigueur et l'excellence.
+              Notre histoire, notre mission, nos valeurs et la vision qui guident chaque projet de ZOH-HENAN Immobilier.
             </p>
+            <nav aria-label="Sections de la page" className="flex flex-wrap gap-2 mt-10">
+              {sections.map((s) => (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  className="rounded-full border border-white/30 bg-white/10 backdrop-blur px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-white hover:text-[#1e5d2e] transition-colors"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </nav>
           </div>
         </section>
 
         {/* ── HISTOIRE ─────────────────────────────────────────────── */}
-        <section className="py-24 px-6 sm:px-12 lg:px-20 bg-white">
+        <section id="histoire" className="scroll-mt-[90px] py-24 px-6 sm:px-12 lg:px-20 bg-white">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
 
             {/* Texte */}
@@ -160,8 +184,32 @@ export default function MissionPage() {
           </div>
         </section>
 
+        {/* ── MISSION ───────────────────────────────────────────────── */}
+        <section id="mission" className="scroll-mt-[90px] py-24 px-6 sm:px-12 lg:px-20 bg-white">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
+            <div className="lg:col-span-2">
+              <div className="w-14 h-14 rounded-2xl bg-[#1e5d2e] flex items-center justify-center mb-6">
+                <Target size={26} strokeWidth={1.6} className="text-white" />
+              </div>
+              <p className="text-[#1e5d2e] text-xs font-semibold tracking-[4px] uppercase mb-3">Pourquoi nous existons</p>
+              <h2 className="text-gray-900 font-black leading-tight" style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(26px,4vw,40px)" }}>
+                Notre Mission
+              </h2>
+              <div className="w-10 h-[3px] bg-[#1e5d2e] rounded mt-4" />
+            </div>
+            <div className="lg:col-span-3 space-y-5 text-gray-600 text-[15px] leading-relaxed">
+              <p className="text-gray-900 text-lg font-semibold leading-relaxed" style={{ fontFamily: "var(--font-playfair)" }}>
+                Révolutionner le secteur immobilier en Côte d'Ivoire en rétablissant la confiance des investisseurs grâce à la transparence, la rigueur et l'excellence.
+              </p>
+              <p>
+                Nous concevons et livrons des programmes immobiliers entièrement sécurisés sur le plan juridique, pour que chaque souscripteur devienne pleinement propriétaire de son bien, avec son titre CMPF.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ── VALEURS ───────────────────────────────────────────────── */}
-        <section className="py-24 px-6 sm:px-12 lg:px-20 bg-white">
+        <section id="valeurs" className="scroll-mt-[90px] py-24 px-6 sm:px-12 lg:px-20 bg-gray-50 border-y border-gray-100">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
               <p className="text-[#1e5d2e] text-xs font-semibold tracking-[4px] uppercase mb-3">Ce qui nous guide</p>
@@ -170,12 +218,43 @@ export default function MissionPage() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {valeurs.map((v) => (
-                <div key={v.title} className="bg-gray-50 rounded-xl p-6 border border-gray-100 hover:border-[#1e5d2e]/40 hover:shadow-sm transition-all duration-300">
+                <div key={v.title} className="bg-white rounded-xl p-6 border border-gray-100 hover:border-[#1e5d2e]/40 hover:shadow-sm transition-all duration-300">
                   <div className="w-11 h-11 rounded-full bg-[#1e5d2e]/15 flex items-center justify-center mb-4">{v.icon}</div>
                   <h3 className="text-gray-900 font-bold text-base mb-2" style={{ fontFamily: "var(--font-playfair)" }}>{v.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── VISION ────────────────────────────────────────────────── */}
+        <section id="vision" className="scroll-mt-[90px] relative py-24 px-6 sm:px-12 lg:px-20 bg-white overflow-hidden">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-last lg:order-first">
+              <Image
+                src="/images/accueil/hero-slider/Perspective masse 01.jpg"
+                alt="Vue d'ensemble de la Cité Prestige"
+                fill
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a2e14]/70 to-transparent" />
+              <p className="absolute bottom-5 left-5 right-5 text-white text-sm font-semibold">Cité Prestige · Bingerville</p>
+            </div>
+            <div>
+              <div className="w-14 h-14 rounded-2xl bg-[#1e5d2e]/10 flex items-center justify-center mb-6">
+                <Eye size={26} strokeWidth={1.6} className="text-[#1e5d2e]" />
+              </div>
+              <p className="text-[#1e5d2e] text-xs font-semibold tracking-[4px] uppercase mb-3">Où nous allons</p>
+              <h2 className="text-gray-900 font-black leading-tight mb-4" style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(26px,4vw,40px)" }}>
+                Notre Vision
+              </h2>
+              <div className="w-10 h-[3px] bg-[#1e5d2e] rounded mb-6" />
+              <p className="text-gray-600 text-[15px] leading-relaxed mb-6">{vision}</p>
+              <p className="text-gray-600 text-[15px] leading-relaxed">
+                Notre ambition est de révolutionner le secteur de l'immobilier en Côte d'Ivoire en restaurant l'image des investisseurs vis-à-vis des programmes immobiliers.
+              </p>
             </div>
           </div>
         </section>
@@ -230,15 +309,16 @@ export default function MissionPage() {
           </div>
         </section>
 
-        {/* ── CITATION AMBITION ─────────────────────────────────────── */}
-        <section className="bg-[#0a2e14] py-20 px-6 sm:px-12 relative overflow-hidden">
+        {/* ── SLOGAN ─────────────────────────────────────────────────── */}
+        <section id="slogan" className="scroll-mt-[90px] bg-[#0a2e14] py-20 px-6 sm:px-12 relative overflow-hidden">
           <div className="absolute inset-0 opacity-[0.04]"
             style={{ backgroundImage: "repeating-linear-gradient(45deg,white 0,white 1px,transparent 0,transparent 40px)" }} />
           <div className="relative max-w-3xl mx-auto text-center">
-            <div className="text-[#1e5d2e] text-6xl font-black leading-none mb-4" style={{ fontFamily: "var(--font-playfair)" }}>"</div>
-            <p className="text-white text-xl sm:text-2xl font-semibold leading-relaxed mb-4"
-              style={{ fontFamily: "var(--font-playfair)" }}>
-              Notre ambition est de révolutionner le secteur de l'immobilier en Côte d'Ivoire en restaurant l'image des investisseurs vis-à-vis des programmes immobiliers.
+            <p className="text-[#4ade80] text-xs font-semibold tracking-[5px] uppercase mb-6">Notre slogan</p>
+            <div className="text-[#4ade80]/60 text-6xl font-black leading-none mb-2" style={{ fontFamily: "var(--font-playfair)" }}>&ldquo;</div>
+            <p className="text-white font-black leading-tight mb-4"
+              style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px,4.5vw,52px)" }}>
+              {slogan}
             </p>
             <div className="w-10 h-[2px] bg-[#1e5d2e] rounded mx-auto mt-6" />
             <p className="text-white/50 text-sm mt-4 tracking-widest uppercase">ZOH-HENAN Immobilier</p>

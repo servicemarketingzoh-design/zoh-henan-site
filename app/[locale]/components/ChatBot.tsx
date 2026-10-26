@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, type ReactNode, type FormEvent } from "react";
+import Image from "next/image";
+import { RotateCcw, X, Send, Phone } from "lucide-react";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -203,210 +205,257 @@ const FLOW: Record<string, Step> = {
   },
 };
 
+
+// ── Compréhension des messages tapés ──────────────────────────────────────────
+
+const KEYWORDS: { step: string; words: string[] }[] = [
+  { step: "conseiller", words: ["conseiller", "appel", "rappel", "telephone", "contact", "humain", "parler", "visite", "whatsapp"] },
+  { step: "financement", words: ["prix", "cout", "tarif", "combien", "financ", "credit", "banque", "cnps", "payer", "paiement", "bhci"] },
+  { step: "achat", words: ["acheter", "achat", "reserv", "process", "etape", "acquerir"] },
+  { step: "garanties", words: ["titre", "cmpf", "acd", "agre", "garantie", "document", "securi", "legal", "arnaque", "fiable"] },
+  { step: "localisation", words: ["ou se", "localis", "adresse", "bingerville", "situe", "plan", "acces", "trouve"] },
+  { step: "villas_duplex", words: ["duplex", "r+1", "etage"] },
+  { step: "villas_basse", words: ["plain", "basse"] },
+  { step: "villas", words: ["villa", "maison", "piece", "chambre", "logement", "type"] },
+  { step: "start", words: ["bonjour", "salut", "bonsoir", "menu", "hello", "aide"] },
+];
+
+function normalize(text: string) {
+  return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
+function matchStep(text: string) {
+  const value = normalize(text);
+  return KEYWORDS.find(({ words }) => words.some((w) => value.includes(w)))?.step;
+}
+
+// Rend le gras **texte** sans injecter de HTML.
+function formatText(text: string): ReactNode[] {
+  return text.split(/(\*\*.*?\*\*)/g).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={i} className="font-semibold text-gray-900">{part.slice(2, -2)}</strong>
+    ) : (
+      part
+    ),
+  );
+}
+
 // ── Composant principal ────────────────────────────────────────────────────────
 
 let msgId = 0;
-const newMsg = (from: "bot" | "user", text: string, typing = false): Message => ({
-  id: ++msgId, from, text, typing,
-});
+const newMsg = (from: "bot" | "user", text: string): Message => ({ id: ++msgId, from, text });
 
-export default function ChatBot() {
-  const [open, setOpen] = useState(false);
+const PHONE = "+2250716171717";
+const WHATSAPP_URL = `https://wa.me/2250716171717?text=${encodeURIComponent("Bonjour ZOH-HENAN Immobilier, je souhaite obtenir des informations sur vos villas.")}`;
+
+function BotAvatar({ size = 28 }: { size?: number }) {
+  return (
+    <div
+      className="rounded-full bg-white ring-1 ring-[#1e5d2e]/15 flex items-center justify-center flex-shrink-0 overflow-hidden"
+      style={{ width: size, height: size }}
+    >
+      <Image src="/images/logo.png" alt="" width={size} height={size} className="object-contain p-[3px]" />
+    </div>
+  );
+}
+
+export default function ChatBot({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [options, setOptions] = useState<Option[]>([]);
   const [isTyping, setIsTyping] = useState(false);
-  const [stepKey, setStepKey] = useState("start");
+  const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
+  const runRef = useRef(0);
 
-  // Scroll au dernier message
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
+  }, [messages, isTyping, options]);
 
-  // Lancer le step initial à l'ouverture
-  useEffect(() => {
-    if (open && messages.length === 0) playStep("start");
-  }, [open]);
-
-  const playStep = async (key: string) => {
+  const playStep = useCallback(async (key: string, intro?: string) => {
     const step = FLOW[key];
     if (!step) return;
-    setStepKey(key);
+    const run = ++runRef.current;
     setOptions([]);
 
-    for (const text of step.messages) {
+    for (const text of intro ? [intro, ...step.messages] : step.messages) {
       setIsTyping(true);
-      await delay(600 + text.length * 12);
+      await delay(450 + Math.min(text.length, 200) * 6);
+      if (run !== runRef.current) return;
       setIsTyping(false);
       setMessages((prev) => [...prev, newMsg("bot", text)]);
-      await delay(180);
+      await delay(150);
     }
 
-    if (step.options) setOptions(step.options);
-  };
+    if (run === runRef.current && step.options) setOptions(step.options);
+  }, []);
+
+  // Lance l'accueil à la première ouverture.
+  const startedRef = useRef(false);
+  useEffect(() => {
+    if (!open || startedRef.current) return;
+    startedRef.current = true;
+    const timer = setTimeout(() => playStep("start"), 0);
+    return () => clearTimeout(timer);
+  }, [open, playStep]);
 
   const handleOption = async (opt: Option) => {
     setOptions([]);
     setMessages((prev) => [...prev, newMsg("user", opt.label)]);
-    await delay(300);
+    await delay(250);
     playStep(opt.value);
   };
 
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const text = input.trim();
+    if (!text) return;
+    setInput("");
+    setOptions([]);
+    setMessages((prev) => [...prev, newMsg("user", text)]);
+    await delay(250);
+    const step = matchStep(text);
+    if (step) playStep(step);
+    else playStep("start", "Je n'ai pas bien compris votre demande 🤔 Voici les sujets sur lesquels je peux vous aider :");
+  };
+
   const handleReset = () => {
+    runRef.current++;
     setMessages([]);
     setOptions([]);
     setIsTyping(false);
     setTimeout(() => playStep("start"), 100);
   };
 
-  const whatsappUrl = `https://wa.me/2250716171717?text=${encodeURIComponent("Bonjour ZOH-HENAN Immobilier, je souhaite obtenir des informations sur vos villas.")}`;
+  if (!open) return null;
 
   return (
-    <>
-      {/* Fenêtre de chat */}
-      {open && (
-        <div
-          className="fixed bottom-[80px] right-6 z-[9998] flex flex-col rounded-2xl overflow-hidden shadow-2xl border border-gray-100"
-          style={{ width: 340, height: 540, background: "#fff" }}
+    <div
+      role="dialog"
+      aria-label="Assistant ZOH-HENAN"
+      className="zh-panel-in fixed z-[10000] inset-3 top-[84px] sm:inset-auto sm:bottom-8 sm:right-[92px] sm:w-[380px] sm:h-[min(620px,calc(100vh-130px))] flex flex-col rounded-3xl overflow-hidden bg-white shadow-[0_24px_60px_-12px_rgba(10,46,20,0.35)] border border-gray-100"
+    >
+      {/* En-tête */}
+      <div className="relative flex items-center gap-3 px-4 py-4 bg-gradient-to-br from-[#0a2e14] via-[#154522] to-[#1e5d2e] flex-shrink-0">
+        <div className="relative">
+          <BotAvatar size={42} />
+          <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#4ade80] ring-2 ring-[#154522]" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-white font-bold text-[15px] leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
+            Assistant Zoh-Henan
+          </p>
+          <p className="text-white/70 text-[11.5px] mt-0.5">En ligne · Répond instantanément</p>
+        </div>
+        <button
+          onClick={handleReset}
+          title="Recommencer"
+          aria-label="Recommencer la conversation"
+          className="w-8 h-8 rounded-full text-white/70 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors"
         >
-          {/* Header */}
-          <div className="flex items-center gap-3 px-4 py-3 bg-[#1e5d2e] flex-shrink-0">
-            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 24 24" fill="white" width="20" height="20">
-                <path d="M12 2C6.477 2 2 6.477 2 12v3a3 3 0 003 3h1a1 1 0 001-1v-4a1 1 0 00-1-1H4.071A8 8 0 0120 12h-2a1 1 0 00-1 1v4a1 1 0 001 1h1a3 3 0 003-3v-3c0-5.523-4.477-10-10-10z" />
-              </svg>
-            </div>
-            <div className="flex-1">
-              <p className="text-white font-bold text-sm leading-none">ZOH-HENAN Immobilier</p>
-              <div className="flex items-center gap-1.5 mt-1">
-                <span className="w-2 h-2 rounded-full bg-[#4ade80] inline-block" />
-                <p className="text-white/80 text-[11px]">Assistant en ligne</p>
+          <RotateCcw size={15} />
+        </button>
+        <button
+          onClick={onClose}
+          aria-label="Fermer le chat"
+          className="w-8 h-8 rounded-full text-white/70 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors"
+        >
+          <X size={17} />
+        </button>
+      </div>
+
+      {/* Messages */}
+      <div className="flex-1 overflow-y-auto px-4 py-5 space-y-3 bg-[#f6f8f6]">
+        <p className="text-center text-[10.5px] font-semibold uppercase tracking-[2px] text-gray-400">Aujourd&apos;hui</p>
+
+        {messages.map((msg, i) => {
+          const prev = messages[i - 1];
+          const showAvatar = msg.from === "bot" && prev?.from !== "bot";
+          return (
+            <div key={msg.id} className={`zh-msg-in flex items-end gap-2 ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
+              {msg.from === "bot" && (showAvatar ? <BotAvatar /> : <div className="w-7 flex-shrink-0" />)}
+              <div
+                className={`max-w-[82%] px-3.5 py-2.5 text-[13px] leading-relaxed whitespace-pre-line ${
+                  msg.from === "bot"
+                    ? "bg-white text-gray-700 rounded-2xl rounded-bl-md shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
+                    : "bg-[#1e5d2e] text-white rounded-2xl rounded-br-md font-medium"
+                }`}
+              >
+                {msg.from === "bot" ? formatText(msg.text) : msg.text}
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <button onClick={handleReset} title="Recommencer" className="text-white/60 hover:text-white transition-colors">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="16" height="16">
-                  <path d="M3 12a9 9 0 109-9M3 3v4h4" />
-                </svg>
-              </button>
-              <button onClick={() => setOpen(false)} className="text-white/60 hover:text-white transition-colors" aria-label="Fermer">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" width="16" height="16">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
+          );
+        })}
+
+        {isTyping && (
+          <div className="zh-msg-in flex items-end gap-2">
+            <BotAvatar />
+            <div className="bg-white rounded-2xl rounded-bl-md px-4 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.06)] flex gap-1 items-center">
+              {[0, 150, 300].map((d) => (
+                <span key={d} className="w-1.5 h-1.5 bg-[#1e5d2e]/50 rounded-full animate-bounce" style={{ animationDelay: `${d}ms` }} />
+              ))}
             </div>
           </div>
+        )}
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-2 bg-[#f8faf8]">
-            {messages.map((msg) => (
-              <div key={msg.id} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
-                {msg.from === "bot" && (
-                  <div className="w-6 h-6 rounded-full bg-[#1e5d2e] flex items-center justify-center flex-shrink-0 mr-2 mt-1">
-                    <svg viewBox="0 0 24 24" fill="white" width="12" height="12">
-                      <path d="M12 2C6.477 2 2 6.477 2 12v3a3 3 0 003 3h1a1 1 0 001-1v-4a1 1 0 00-1-1H4.071A8 8 0 0120 12h-2a1 1 0 00-1 1v4a1 1 0 001 1h1a3 3 0 003-3v-3c0-5.523-4.477-10-10-10z" />
-                    </svg>
-                  </div>
-                )}
-                <div
-                  className={`max-w-[80%] rounded-2xl px-3 py-2.5 text-[13px] leading-relaxed whitespace-pre-line ${
-                    msg.from === "bot"
-                      ? "bg-white text-gray-700 shadow-sm border border-gray-100 rounded-tl-none"
-                      : "bg-[#1e5d2e] text-white rounded-tr-none"
-                  }`}
-                  style={{ fontWeight: msg.from === "bot" ? 400 : 500 }}
-                  dangerouslySetInnerHTML={{
-                    __html: msg.text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"),
-                  }}
-                />
-              </div>
+        {!isTyping && options.length > 0 && (
+          <div className="zh-msg-in flex flex-wrap gap-2 pl-9 pt-1">
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => handleOption(opt)}
+                className="text-left text-[12.5px] font-medium text-[#1e5d2e] bg-white border border-[#1e5d2e]/25 rounded-full px-3.5 py-2 hover:bg-[#1e5d2e] hover:text-white hover:border-[#1e5d2e] transition-all duration-150"
+              >
+                {opt.label}
+              </button>
             ))}
-
-            {/* Indicateur de frappe */}
-            {isTyping && (
-              <div className="flex justify-start">
-                <div className="w-6 h-6 rounded-full bg-[#1e5d2e] flex items-center justify-center flex-shrink-0 mr-2 mt-1">
-                  <svg viewBox="0 0 24 24" fill="white" width="12" height="12">
-                    <path d="M12 2C6.477 2 2 6.477 2 12v3a3 3 0 003 3h1a1 1 0 001-1v-4a1 1 0 00-1-1H4.071A8 8 0 0120 12h-2a1 1 0 00-1 1v4a1 1 0 001 1h1a3 3 0 003-3v-3c0-5.523-4.477-10-10-10z" />
-                  </svg>
-                </div>
-                <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-none px-4 py-3 shadow-sm flex gap-1 items-center">
-                  <span className="w-2 h-2 bg-[#1e5d2e]/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-2 h-2 bg-[#1e5d2e]/40 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-2 h-2 bg-[#1e5d2e]/40 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                </div>
-              </div>
-            )}
-
-            {/* Options de réponse */}
-            {!isTyping && options.length > 0 && (
-              <div className="space-y-1.5 pt-2">
-                {options.map((opt) => (
-                  <button
-                    key={opt.value}
-                    onClick={() => handleOption(opt)}
-                    className="w-full text-left text-[12.5px] font-medium text-[#1e5d2e] border border-[#1e5d2e]/30 rounded-xl px-3 py-2.5 bg-white hover:bg-[#1e5d2e] hover:text-white transition-all duration-200 shadow-sm"
-                  >
-                    {opt.label}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            <div ref={bottomRef} />
           </div>
+        )}
 
-          {/* WhatsApp footer */}
+        <div ref={bottomRef} />
+      </div>
+
+      {/* Saisie + contacts directs */}
+      <div className="flex-shrink-0 bg-white border-t border-gray-100 px-3 pt-3 pb-3 space-y-2.5">
+        <form onSubmit={handleSubmit} className="flex items-center gap-2 rounded-full bg-gray-100 pl-4 pr-1.5 py-1.5 focus-within:ring-2 focus-within:ring-[#1e5d2e]/20">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Écrivez votre question…"
+            aria-label="Votre message"
+            className="flex-1 bg-transparent text-[13px] outline-none placeholder:text-gray-400"
+          />
+          <button
+            type="submit"
+            disabled={!input.trim()}
+            aria-label="Envoyer"
+            className="w-8 h-8 rounded-full bg-[#1e5d2e] text-white flex items-center justify-center disabled:opacity-40 transition-opacity"
+          >
+            <Send size={14} />
+          </button>
+        </form>
+        <div className="grid grid-cols-2 gap-2">
           <a
-            href={whatsappUrl}
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-3 bg-[#25D366] hover:bg-[#1ebe5d] transition-colors text-white text-[13px] font-bold flex-shrink-0"
+            className="flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white text-[12.5px] font-semibold py-2 transition-colors"
           >
-            <svg viewBox="0 0 24 24" fill="white" width="18" height="18">
+            <svg viewBox="0 0 24 24" fill="white" width="15" height="15" aria-hidden>
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
               <path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.932-1.41A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 11.999 2zm0 18.182a8.182 8.182 0 01-4.178-1.144l-.3-.178-3.1.886.888-3.02-.196-.31A8.182 8.182 0 1112 20.182z" />
             </svg>
-            Discuter sur WhatsApp
+            WhatsApp
+          </a>
+          <a
+            href={`tel:${PHONE}`}
+            className="flex items-center justify-center gap-1.5 rounded-xl border border-[#1e5d2e]/25 text-[#1e5d2e] hover:bg-[#1e5d2e]/5 text-[12.5px] font-semibold py-2 transition-colors"
+          >
+            <Phone size={14} />
+            Appeler
           </a>
         </div>
-      )}
-
-      {/* Bouton flottant */}
-      <button
-        onClick={() => setOpen((o) => !o)}
-        title="Assistant ZOH-HENAN"
-        aria-label="Ouvrir le chat"
-        style={{
-          width: 52, height: 52, borderRadius: "50%",
-          backgroundColor: open ? "#163f20" : "#1e5d2e",
-          border: "none", cursor: "pointer",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 20px rgba(46,125,50,0.5)",
-          transition: "all 0.25s",
-          position: "relative",
-        }}
-        onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.08)")}
-        onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
-      >
-        {!open ? (
-          <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
-            <path d="M12 2C6.477 2 2 6.477 2 12v3a3 3 0 003 3h1a1 1 0 001-1v-4a1 1 0 00-1-1H4.071A8 8 0 0120 12h-2a1 1 0 00-1 1v4a1 1 0 001 1h1a3 3 0 003-3v-3c0-5.523-4.477-10-10-10z" />
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" width="20" height="20">
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        )}
-        {!open && (
-          <span style={{
-            position: "absolute", top: 3, right: 3,
-            width: 11, height: 11, borderRadius: "50%",
-            backgroundColor: "#4ade80", border: "2px solid white",
-          }} />
-        )}
-      </button>
-    </>
+      </div>
+    </div>
   );
 }
 

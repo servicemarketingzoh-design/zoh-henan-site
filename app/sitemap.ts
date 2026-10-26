@@ -12,6 +12,7 @@ const staticRoutes: { path: string; priority: number; changeFrequency: ChangeFre
   { path: "/proprietes",                 priority: 0.9, changeFrequency: "weekly"  },
   { path: "/proprietes/cite-prestige",   priority: 0.9, changeFrequency: "weekly"  },
   { path: "/actualites",                 priority: 0.8, changeFrequency: "daily"   },
+  { path: "/blog",                       priority: 0.7, changeFrequency: "weekly"  },
   { path: "/contact",                    priority: 0.8, changeFrequency: "monthly" },
   { path: "/mission",                    priority: 0.7, changeFrequency: "monthly" },
   { path: "/galerie",                    priority: 0.7, changeFrequency: "monthly" },
