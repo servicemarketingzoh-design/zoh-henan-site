@@ -83,6 +83,9 @@ export default function PartenairesPage() {
           <section key={p.slug} id={p.slug} className="scroll-mt-[90px] py-24 px-6 sm:px-12 lg:px-20 bg-white">
             <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
               <div className="lg:col-span-2">
+                <div className="max-w-[240px] mb-6">
+                  <PartnerMark partner={p} />
+                </div>
                 <div className="flex items-center gap-3 mb-3">
                   <Landmark size={20} strokeWidth={1.6} className="text-[#1e5d2e]" />
                   <p className="text-[#1e5d2e] text-xs font-semibold tracking-[4px] uppercase">Institution</p>

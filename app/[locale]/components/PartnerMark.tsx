@@ -6,9 +6,10 @@ import type { Partner } from "@/lib/partners";
 export default function PartnerMark({ partner, size = "lg" }: { partner: Partner; size?: "sm" | "lg" }) {
   const box = size === "lg" ? "w-20 h-20 rounded-2xl" : "w-full h-16 rounded-xl";
   if (partner.logo) {
+    const logoBox = size === "lg" ? "w-full h-28 rounded-2xl" : "w-full h-20 rounded-xl";
     return (
-      <div className={`${box} relative bg-white border border-gray-100 overflow-hidden`}>
-        <Image src={partner.logo} alt={partner.nom} fill sizes="160px" className="object-contain p-2" />
+      <div className={`${logoBox} relative bg-white border border-gray-100 overflow-hidden`}>
+        <Image src={partner.logo} alt={partner.nom} fill sizes="320px" className="object-contain p-3" />
       </div>
     );
   }

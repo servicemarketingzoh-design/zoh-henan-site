@@ -16,6 +16,7 @@ export type Partner = {
 export const partners: Partner[] = [
   {
     slug: "bhci",
+    logo: "/images/partenaires/logos/bhci.png",
     sigle: "BHCI",
     nom: "Banque de l'Habitat de Côte d'Ivoire",
     categorie: "Financement",
@@ -26,6 +27,7 @@ export const partners: Partner[] = [
   },
   {
     slug: "sgci",
+    logo: "/images/partenaires/logos/sgci.png",
     sigle: "SGCI",
     nom: "Société Générale Côte d'Ivoire",
     categorie: "Financement",
@@ -36,6 +38,7 @@ export const partners: Partner[] = [
   },
   {
     slug: "cnps",
+    logo: "/images/partenaires/logos/cnps.png",
     sigle: "CNPS",
     nom: "Caisse Nationale de Prévoyance Sociale",
     categorie: "Financement",
@@ -46,6 +49,7 @@ export const partners: Partner[] = [
   },
   {
     slug: "ministere-urbanisme",
+    logo: "/images/partenaires/logos/mclu.png",
     sigle: "Urbanisme",
     nom: "Ministère de l'Urbanisme et des Cadres de Vie",
     categorie: "Institution",
