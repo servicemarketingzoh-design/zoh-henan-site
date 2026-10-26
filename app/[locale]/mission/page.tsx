@@ -4,7 +4,10 @@ import Header from "../components/Header";
 import FloatingButtons from "../components/FloatingButtons";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import Image from "next/image";
+import PartnerMark from "../components/PartnerMark";
+import { partners } from "@/lib/partners";
 import { ShieldCheck, Handshake, Award, TrendingUp, CheckCircle2, Users, Building2, MapPin, Target, Eye } from "lucide-react";
 
 const valeurs = [
@@ -72,6 +75,7 @@ const vision =
 const slogan = "Bâtir la confiance, livrer la propriété.";
 
 export default function MissionPage() {
+  const { locale = "fr" } = useParams<{ locale?: string }>();
   return (
     <>
       <Header />
@@ -336,13 +340,18 @@ export default function MissionPage() {
               </h2>
               <div className="w-10 h-[3px] bg-[#1e5d2e] rounded mx-auto" />
             </div>
-            {/* Placeholder — les logos seront ajoutés ici */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-items-center opacity-60">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-32 h-16 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200">
-                  <span className="text-gray-300 text-xs font-semibold uppercase tracking-wider">Logo {i}</span>
-                </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+              {partners.map((p) => (
+                <Link key={p.slug} href={`/${locale}/partenaires#${p.slug}`} className="group flex flex-col items-center gap-3 text-center">
+                  <PartnerMark partner={p} size="sm" />
+                  <span className="text-xs font-semibold text-gray-500 group-hover:text-[#1e5d2e] transition-colors">{p.nom}</span>
+                </Link>
               ))}
+            </div>
+            <div className="text-center mt-10">
+              <Link href={`/${locale}/partenaires`} className="inline-flex items-center gap-2 text-sm font-semibold text-[#1e5d2e] hover:underline">
+                Découvrir nos partenaires →
+              </Link>
             </div>
           </div>
         </section>
