@@ -251,7 +251,7 @@ const WHATSAPP_URL = `https://wa.me/2250716171717?text=${encodeURIComponent("Bon
 function BotAvatar({ size = 28 }: { size?: number }) {
   return (
     <div
-      className="rounded-full bg-white ring-1 ring-[#1e5d2e]/15 flex items-center justify-center flex-shrink-0 overflow-hidden"
+      className="rounded-full bg-white/80 backdrop-blur-md ring-1 ring-white/80 shadow-[0_2px_8px_rgba(10,46,20,0.12)] flex items-center justify-center flex-shrink-0 overflow-hidden"
       style={{ width: size, height: size }}
     >
       <Image src="/images/logo.png" alt="" width={size} height={size} className="object-contain p-[3px]" />
@@ -264,11 +264,13 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
   const [options, setOptions] = useState<Option[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [input, setInput] = useState("");
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const runRef = useRef(0);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Fait défiler uniquement la liste des messages (pas la fenêtre ni la page).
+    const list = listRef.current;
+    if (list) list.scrollTo({ top: list.scrollHeight, behavior: "smooth" });
   }, [messages, isTyping, options]);
 
   const playStep = useCallback(async (key: string, intro?: string) => {
@@ -332,40 +334,55 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
     <div
       role="dialog"
       aria-label="Assistant ZOH-HENAN"
-      className="zh-panel-in fixed z-[10000] inset-3 top-[84px] sm:inset-auto sm:bottom-8 sm:right-[92px] sm:w-[380px] sm:h-[min(620px,calc(100vh-130px))] flex flex-col rounded-3xl overflow-hidden bg-white shadow-[0_24px_60px_-12px_rgba(10,46,20,0.35)] border border-gray-100"
+      className="zh-panel-in fixed z-[10000] inset-3 top-[84px] sm:inset-auto sm:bottom-8 sm:right-[92px] sm:w-[390px] sm:h-[min(640px,calc(100vh-130px))] flex flex-col rounded-[28px] overflow-hidden isolate
+        bg-white/45 backdrop-blur-2xl backdrop-saturate-150
+        border border-white/60 ring-1 ring-black/5
+        shadow-[0_30px_80px_-20px_rgba(10,46,20,0.45),inset_0_1px_0_rgba(255,255,255,0.7)]"
     >
+      {/* Reflets colorés derrière le verre */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-24 -left-20 w-72 h-72 rounded-full bg-[#1e5d2e]/30 blur-3xl" />
+        <div className="absolute top-1/3 -right-24 w-64 h-64 rounded-full bg-[#4ade80]/20 blur-3xl" />
+        <div className="absolute -bottom-20 left-10 w-64 h-64 rounded-full bg-[#1e5d2e]/20 blur-3xl" />
+      </div>
+
       {/* En-tête */}
-      <div className="relative flex items-center gap-3 px-4 py-4 bg-gradient-to-br from-[#0a2e14] via-[#154522] to-[#1e5d2e] flex-shrink-0">
+      <div className="relative flex items-center gap-3 px-4 py-4 flex-shrink-0 bg-gradient-to-br from-[#0a2e14]/85 via-[#154522]/80 to-[#1e5d2e]/75 backdrop-blur-xl border-b border-white/15">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
         <div className="relative">
-          <BotAvatar size={42} />
-          <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#4ade80] ring-2 ring-[#154522]" />
+          <div className="rounded-full p-[2px] bg-gradient-to-br from-white/80 to-white/20">
+            <BotAvatar size={42} />
+          </div>
+          <span className="absolute bottom-0.5 right-0.5 w-3 h-3 rounded-full bg-[#4ade80] ring-2 ring-[#154522] shadow-[0_0_8px_#4ade80]" />
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-white font-bold text-[15px] leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
-            Assistant Zoh-Henan
-          </p>
+          <p className="text-white font-bold text-[15px] leading-tight">Assistant Zoh-Henan</p>
           <p className="text-white/70 text-[11.5px] mt-0.5">En ligne · Répond instantanément</p>
         </div>
         <button
           onClick={handleReset}
           title="Recommencer"
           aria-label="Recommencer la conversation"
-          className="w-8 h-8 rounded-full text-white/70 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors"
+          className="w-8 h-8 rounded-full text-white/80 hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center transition-colors"
         >
-          <RotateCcw size={15} />
+          <RotateCcw size={14} />
         </button>
         <button
           onClick={onClose}
           aria-label="Fermer le chat"
-          className="w-8 h-8 rounded-full text-white/70 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors"
+          className="w-8 h-8 rounded-full text-white/80 hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center transition-colors"
         >
-          <X size={17} />
+          <X size={16} />
         </button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-5 space-y-3 bg-[#f6f8f6]">
-        <p className="text-center text-[10.5px] font-semibold uppercase tracking-[2px] text-gray-400">Aujourd&apos;hui</p>
+      <div ref={listRef} className="flex-1 min-h-0 overflow-y-auto px-4 py-5 space-y-3">
+        <div className="flex justify-center">
+          <span className="text-[10.5px] font-semibold uppercase tracking-[2px] text-[#1e5d2e]/70 bg-white/50 backdrop-blur-md border border-white/60 rounded-full px-3 py-1">
+            Aujourd&apos;hui
+          </span>
+        </div>
 
         {messages.map((msg, i) => {
           const prev = messages[i - 1];
@@ -376,8 +393,8 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
               <div
                 className={`max-w-[82%] px-3.5 py-2.5 text-[13px] leading-relaxed whitespace-pre-line ${
                   msg.from === "bot"
-                    ? "bg-white text-gray-700 rounded-2xl rounded-bl-md shadow-[0_1px_2px_rgba(0,0,0,0.06)]"
-                    : "bg-[#1e5d2e] text-white rounded-2xl rounded-br-md font-medium"
+                    ? "bg-white/70 backdrop-blur-xl text-gray-700 rounded-2xl rounded-bl-md border border-white/80 shadow-[0_4px_16px_-6px_rgba(10,46,20,0.15)]"
+                    : "bg-gradient-to-br from-[#1e5d2e] to-[#2b7a40] text-white rounded-2xl rounded-br-md font-medium shadow-[0_6px_18px_-6px_rgba(30,93,46,0.6)] border border-white/10"
                 }`}
               >
                 {msg.from === "bot" ? formatText(msg.text) : msg.text}
@@ -389,9 +406,9 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
         {isTyping && (
           <div className="zh-msg-in flex items-end gap-2">
             <BotAvatar />
-            <div className="bg-white rounded-2xl rounded-bl-md px-4 py-3 shadow-[0_1px_2px_rgba(0,0,0,0.06)] flex gap-1 items-center">
+            <div className="bg-white/70 backdrop-blur-xl border border-white/80 rounded-2xl rounded-bl-md px-4 py-3 shadow-[0_4px_16px_-6px_rgba(10,46,20,0.15)] flex gap-1 items-center">
               {[0, 150, 300].map((d) => (
-                <span key={d} className="w-1.5 h-1.5 bg-[#1e5d2e]/50 rounded-full animate-bounce" style={{ animationDelay: `${d}ms` }} />
+                <span key={d} className="w-1.5 h-1.5 bg-[#1e5d2e]/60 rounded-full animate-bounce" style={{ animationDelay: `${d}ms` }} />
               ))}
             </div>
           </div>
@@ -403,7 +420,7 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
               <button
                 key={opt.value}
                 onClick={() => handleOption(opt)}
-                className="text-left text-[12.5px] font-medium text-[#1e5d2e] bg-white border border-[#1e5d2e]/25 rounded-full px-3.5 py-2 hover:bg-[#1e5d2e] hover:text-white hover:border-[#1e5d2e] transition-all duration-150"
+                className="text-left text-[12.5px] font-medium text-[#1e5d2e] bg-white/55 backdrop-blur-md border border-white/80 rounded-full px-3.5 py-2 shadow-[0_2px_10px_-4px_rgba(10,46,20,0.2)] hover:bg-[#1e5d2e] hover:text-white hover:border-[#1e5d2e] hover:-translate-y-px transition-all duration-150"
               >
                 {opt.label}
               </button>
@@ -411,12 +428,14 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
           </div>
         )}
 
-        <div ref={bottomRef} />
       </div>
 
       {/* Saisie + contacts directs */}
-      <div className="flex-shrink-0 bg-white border-t border-gray-100 px-3 pt-3 pb-3 space-y-2.5">
-        <form onSubmit={handleSubmit} className="flex items-center gap-2 rounded-full bg-gray-100 pl-4 pr-1.5 py-1.5 focus-within:ring-2 focus-within:ring-[#1e5d2e]/20">
+      <div className="flex-shrink-0 px-3 pt-3 pb-3 space-y-2.5 bg-white/35 backdrop-blur-xl border-t border-white/60">
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md border border-white/90 shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] pl-4 pr-1.5 py-1.5 focus-within:ring-2 focus-within:ring-[#1e5d2e]/25"
+        >
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -428,7 +447,7 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
             type="submit"
             disabled={!input.trim()}
             aria-label="Envoyer"
-            className="w-8 h-8 rounded-full bg-[#1e5d2e] text-white flex items-center justify-center disabled:opacity-40 transition-opacity"
+            className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1e5d2e] to-[#2b7a40] text-white flex items-center justify-center shadow-[0_4px_12px_-4px_rgba(30,93,46,0.7)] disabled:opacity-40 transition-opacity"
           >
             <Send size={14} />
           </button>
@@ -438,7 +457,7 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white text-[12.5px] font-semibold py-2 transition-colors"
+            className="flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366]/90 hover:bg-[#25D366] backdrop-blur-md border border-white/40 text-white text-[12.5px] font-semibold py-2 shadow-[0_6px_16px_-8px_rgba(37,211,102,0.9)] transition-colors"
           >
             <svg viewBox="0 0 24 24" fill="white" width="15" height="15" aria-hidden>
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
@@ -448,7 +467,7 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
           </a>
           <a
             href={`tel:${PHONE}`}
-            className="flex items-center justify-center gap-1.5 rounded-xl border border-[#1e5d2e]/25 text-[#1e5d2e] hover:bg-[#1e5d2e]/5 text-[12.5px] font-semibold py-2 transition-colors"
+            className="flex items-center justify-center gap-1.5 rounded-xl bg-white/60 hover:bg-white/80 backdrop-blur-md border border-white/90 text-[#1e5d2e] text-[12.5px] font-semibold py-2 transition-colors"
           >
             <Phone size={14} />
             Appeler

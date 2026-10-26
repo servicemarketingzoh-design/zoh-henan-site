@@ -38,7 +38,7 @@ export default function FaqPanel({ onClose, onOpenChat }: { onClose: () => void;
           <HelpCircle size={20} />
         </div>
         <p className="text-[11px] font-semibold uppercase tracking-[3px] text-white/60">Centre d&apos;aide</p>
-        <h2 className="text-xl font-black mt-1" style={{ fontFamily: "var(--font-playfair)" }}>
+        <h2 className="text-xl font-bold mt-1">
           Questions fréquentes
         </h2>
         <div className="mt-4 flex items-center gap-2 rounded-xl bg-white px-3 py-2.5 text-gray-700">
